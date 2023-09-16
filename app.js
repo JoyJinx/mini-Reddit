@@ -4,6 +4,7 @@ const path = require("path");
 const mongoose = require("mongoose");
 const engine = require("ejs-mate");
 const methodOverride = require("method-override");
+const pageRoutes = require("./routes/subpages.js");
 
 app.engine("ejs", engine);
 
@@ -28,9 +29,7 @@ app.use(
   express.static(path.join(__dirname, "node_modules/font-awesome/css"))
 );
 
-app.get("/", (req, res) => {
-  res.render("index.ejs");
-});
+app.use("/p", pageRoutes);
 
 app.listen(3000, () => {
   console.log("Listening on port 3000:");
