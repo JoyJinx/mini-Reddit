@@ -1,0 +1,46 @@
+/* ==========================================
+    FOR DEMO PURPOSE
+  ========================================== */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+.text-small {
+  font-size: 0.9rem;
+}
+
+a {
+  color: ghostwhite;
+  text-decoration: none;
+  transition: all 0.3s;
+}
+
+a:hover,
+a:focus {
+  text-decoration: none;
+}
+
+.form-control {
+  background: #212529;
+  border-color: #545454;
+}
+
+.form-control:focus {
+  background: #212529;
+}
+
+footer {
+  margin-top: auto;
+  background: #212529;
+}
+
+/* ==========================================
+      CUSTOM UTILS CLASSES
+    ========================================== */
+body,
+html {
+  min-height: 100vh;
+  height: 100%;
+}
