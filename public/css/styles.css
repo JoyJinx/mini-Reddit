@@ -7,6 +7,8 @@
   box-sizing: border-box;
 }
 
+@import url("../../node_modules/font-awesome/css/font-awesome.min.css");
+
 .text-small {
   font-size: 0.9rem;
 }
@@ -23,12 +25,12 @@ a:focus {
 }
 
 .form-control {
-  background: #212529;
+  background: #f1f3f5;
   border-color: #545454;
 }
 
 .form-control:focus {
-  background: #212529;
+  background: ghostwhite;
 }
 
 footer {
