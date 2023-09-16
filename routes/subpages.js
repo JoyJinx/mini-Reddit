@@ -12,8 +12,10 @@ router.get("/:id", async (req, res) => {
   const foundPage = await Page.findById(id);
   res.render("pages/show.ejs", { foundPage });
 });
-router.post("/", (req, res) => {
-  res.redirect("index.ejs");
+router.post("/", async (req, res) => {
+  console.log(req.body);
+  const newPage = await Page.insertOne({ ...req.body });
+  res.redirect("pages/index.ejs");
 });
 
 module.exports = router;
