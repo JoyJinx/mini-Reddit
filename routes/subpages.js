@@ -1,16 +1,16 @@
 const express = require("express");
 const router = express.Router();
 const mongoose = require("mongoose");
-const Page = require("../seed/seeding.js");
+const Page = require("../models/pages.js");
 
 router.get("/", async (req, res) => {
-  console.log(Page.find({}));
   const pages = await Page.find({});
-  console.log(pages);
-  res.render("index.ejs", { pages });
+  res.render("pages/index.ejs", { pages });
 });
-router.get("/:id", (req, res) => {
-  res.render("show.ejs");
+router.get("/:id", async (req, res) => {
+  const { id } = req.params;
+  const foundPage = await Page.findById(id);
+  res.render("pages/show.ejs", { foundPage });
 });
 router.post("/", (req, res) => {
   res.redirect("index.ejs");

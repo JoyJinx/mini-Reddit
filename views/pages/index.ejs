@@ -1,0 +1,17 @@
+<% layout('layouts/boilerplate') %>
+<div class="col-6 offset-3">
+  <h1 class="mt-5">All Posts</h1>
+  <% for(let page of pages) { %>
+  <div class="card mb-5">
+    <div class="card-header">
+      <div class="card-title"><%= page.body %></div>
+      <span>-By <%= page.author %></span>
+    </div>
+    <div class="col-4 offset-4">
+      <img class="img-fluid my-2" src="<%= page.img %>" />
+    </div>
+    <div class="card-footer">likes: <%= page.likes %></div>
+  </div>
+
+  <% } %>
+</div>
