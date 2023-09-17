@@ -5,6 +5,7 @@ const mongoose = require("mongoose");
 const engine = require("ejs-mate");
 const methodOverride = require("method-override");
 const pageRoutes = require("./routes/subpages.js");
+const commentRoutes = require("./routes/comments.js");
 
 app.engine("ejs", engine);
 
@@ -34,6 +35,7 @@ app.use(
 );
 
 app.use("/p", pageRoutes);
+app.use("/p/:id/comments", commentRoutes);
 
 app.listen(3000, () => {
   console.log("Listening on port 3000:");

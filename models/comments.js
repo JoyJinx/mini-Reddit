@@ -1,5 +1,4 @@
 const express = require("express");
-const { ref } = require("joi");
 const mongoose = require("mongoose");
 
 mongoose.connect("mongodb://localhost:27017/miniR");
@@ -10,14 +9,14 @@ db.once("open", function () {
   console.log("Connected successfully");
 });
 
-const pageSchema = new mongoose.Schema({
+const commentsSchema = new mongoose.Schema({
   author: String,
   body: String,
-  img: String,
-  comments: [{ type: mongoose.Schema.Types.ObjectId, ref: "Comment" }],
+  post: mongoose.Schema.Types.ObjectId,
+  comment: mongoose.Schema.Types.ObjectId,
   likes: { type: Number, default: 0 },
 });
 
-const Page = mongoose.model("Page", pageSchema);
+const Comment = mongoose.model("Comment", commentsSchema);
 
-module.exports = Page;
+module.exports = Comment;

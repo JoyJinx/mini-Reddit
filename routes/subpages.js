@@ -12,7 +12,7 @@ router.get("/new", (req, res) => {
 });
 router.get("/:id", async (req, res) => {
   const { id } = req.params;
-  const foundPage = await Page.findById(id);
+  const foundPage = await Page.findById(id).populate("comments");
   res.render("pages/show.ejs", { foundPage });
 });
 router.post("/", async (req, res) => {
@@ -35,4 +35,5 @@ router.delete("/:id", async (req, res) => {
   const foundPage = await Page.findByIdAndDelete(id);
   res.redirect("/p");
 });
+
 module.exports = router;
