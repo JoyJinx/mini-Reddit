@@ -24,7 +24,9 @@
           >
         </div>
         <div>
-          <a class="btn btn-sm btn-danger" type="button" href="/p">Delete</a>
+          <form action="/p/<%= foundPage._id %>?_method=DELETE" method="POST">
+            <button class="btn btn-sm btn-danger">Delete</button>
+          </form>
         </div>
       </div>
     </div>

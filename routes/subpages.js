@@ -18,7 +18,7 @@ router.get("/:id", async (req, res) => {
 router.post("/", async (req, res) => {
   console.log(req.body);
   const newPage = await Page.create(req.body);
-  res.redirect("pages/index.ejs");
+  res.redirect("/p");
 });
 router.get("/:id/edit", async (req, res) => {
   const { id } = req.params;
@@ -29,5 +29,10 @@ router.patch("/:id", async (req, res) => {
   const { id } = req.params;
   const updatedPage = await Page.findByIdAndUpdate(id, req.body, { new: true });
   res.redirect(`/p/${id}`);
+});
+router.delete("/:id", async (req, res) => {
+  const { id } = req.params;
+  const foundPage = await Page.findByIdAndDelete(id);
+  res.redirect("/p");
 });
 module.exports = router;
