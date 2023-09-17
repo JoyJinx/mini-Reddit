@@ -13,7 +13,7 @@ const miniSchema = new mongoose.Schema({
   author: String,
   body: String,
   img: String,
-  likes: Number,
+  likes: { type: Number, default: 0 },
 });
 
 const Page = mongoose.model("Page", miniSchema);

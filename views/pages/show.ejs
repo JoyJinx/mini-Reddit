@@ -9,6 +9,24 @@
     <div class="col-4 offset-4">
       <img class="img-fluid my-2" src="<%= foundPage.img %>" />
     </div>
-    <div class="card-footer">likes: <%= foundPage.likes %></div>
+    <div class="card-footer">
+      <span class="mr-auto">likes: <%= foundPage.likes %></span>
+      <div class="d-flex justify-content-end">
+        <div>
+          <a class="btn btn-sm btn-secondary" type="button" href="/p">Back</a>
+        </div>
+        <div>
+          <a
+            class="btn btn-sm btn-info"
+            type="button"
+            href="/p/<%= foundPage._id %>/edit"
+            >Edit</a
+          >
+        </div>
+        <div>
+          <a class="btn btn-sm btn-danger" type="button" href="/p">Delete</a>
+        </div>
+      </div>
+    </div>
   </div>
 </div>

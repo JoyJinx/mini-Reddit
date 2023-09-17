@@ -1,0 +1,36 @@
+<% layout("layouts/boilerplate") %>
+
+<div class="col-6 offset-3 mt-5">
+  <form action="/p" method="POST">
+    <div class="form-group">
+      <label for="exampleFormControlInput1">Username</label>
+      <input
+        type="text"
+        class="form-control"
+        id="exampleFormControlInput1"
+        placeholder="Username"
+        name="author"
+      />
+    </div>
+    <div class="form-group">
+      <label for="exampleFormControlTextarea1">Your post body</label>
+      <textarea
+        class="form-control"
+        id="exampleFormControlTextarea1"
+        rows="3"
+        name="body"
+      ></textarea>
+    </div>
+    <div class="form-group mt-3">
+      <label for="exampleFormControlInput2">Your post Image</label>
+      <input
+        type="text"
+        class="form-control"
+        id="exampleFormControlInput2"
+        placeholder="image url"
+        name="img"
+      />
+    </div>
+    <button class="btn btn-success">Submit</button>
+  </form>
+</div>

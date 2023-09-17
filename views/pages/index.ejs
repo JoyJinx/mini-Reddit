@@ -1,37 +1,5 @@
 <% layout('layouts/boilerplate') %>
-<div class="col-6 offset-3 mt-5">
-  <form action="/" method="POST">
-    <div class="form-group">
-      <label for="exampleFormControlInput1">Username</label>
-      <input
-        type="text"
-        class="form-control"
-        id="exampleFormControlInput1"
-        placeholder="Username"
-        name="author"
-      />
-    </div>
-    <div class="form-group">
-      <label for="exampleFormControlTextarea1">Your post body</label>
-      <textarea
-        class="form-control"
-        id="exampleFormControlTextarea1"
-        rows="3"
-        name="body"
-      ></textarea>
-    </div>
-    <div class="form-group">
-      <label for="exampleFormControlFile1">Your post Image</label>
-      <input
-        type="file"
-        class="form-control-file"
-        id="exampleFormControlFile1"
-        name="img"
-      />
-    </div>
-    <button class="btn btn-success">Submit</button>
-  </form>
-</div>
+
 <div class="col-6 offset-3 mt-3">
   <h1 class="mt-5">All Posts</h1>
   <% for(let page of pages) { %>
@@ -43,7 +11,14 @@
     <div class="col-4 offset-4">
       <img class="img-fluid my-2" src="<%= page.img %>" />
     </div>
-    <div class="card-footer">likes: <%= page.likes %></div>
+    <div class="card-footer">
+      <span>likes: <%= page.likes %></span>
+      <span
+        ><a class="btn btn-sm btn-info" type="button" href="/p/<%= page._id %>"
+          >Details</a
+        ></span
+      >
+    </div>
   </div>
 
   <% } %>

@@ -1,0 +1,62 @@
+<% layout("layouts/boilerplate") %>
+
+<div class="col-6 offset-3 mt-5">
+  <div class="card mb-5">
+    <form action="/p/<%= foundPage._id %>?_method=PATCH" method="POST">
+      <div class="card-header">
+        <div class="form-group">
+          <label for="exampleFormControlTextarea1">Edit post body</label>
+          <textarea
+            class="form-control"
+            id="exampleFormControlTextarea1"
+            rows="3"
+            name="body"
+          >
+<%= foundPage.body %></textarea
+          >
+        </div>
+        <div class="form-group">
+          <label for="exampleFormControlInput1">Edit Author!!!</label>
+          <input
+            type="text"
+            class="form-control"
+            id="exampleFormControlInput1"
+            placeholder="Username"
+            name="author"
+            value="<%= foundPage.author %>"
+          />
+        </div>
+      </div>
+      <div class="col-4 offset-4">
+        <img class="img-fluid my-2" src="<%= foundPage.img %>" />
+        <div class="form-group mt-3">
+          <label for="exampleFormControlInput2">Edit image url</label>
+          <input
+            type="text"
+            class="form-control"
+            id="exampleFormControlInput2"
+            placeholder="image url"
+            name="img"
+            value="<%= foundPage.img %>"
+          />
+        </div>
+      </div>
+      <div class="card-footer">
+        <span class="text-muted">likes: <%= foundPage.likes %></span>
+        <div class="d-flex justify-content-end">
+          <div>
+            <a
+              class="btn btn-sm btn-secondary"
+              type="button"
+              href="/p/<%= foundPage._id %>"
+              >Cancel</a
+            >
+          </div>
+          <div>
+            <button class="btn btn-sm btn-success">Save</button>
+          </div>
+        </div>
+      </div>
+    </form>
+  </div>
+</div>
