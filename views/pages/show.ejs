@@ -33,7 +33,12 @@
   </div>
 
   <div class="col-6 mt-5">
-    <form action="/p/<%= foundPage._id %>/comments" method="POST">
+    <form
+      class="needs-validation"
+      action="/p/<%= foundPage._id %>/comments"
+      method="POST"
+      novalidate
+    >
       <div class="card-header">
         <div class="form-group">
           <label for="exampleFormControlInput1">Username</label>
@@ -43,6 +48,7 @@
             id="exampleFormControlInput1"
             placeholder="Username"
             name="comment[author]"
+            required
           />
         </div>
       </div>
@@ -53,6 +59,7 @@
           id="exampleFormControlTextarea1"
           rows="3"
           name="comment[body]"
+          required
         ></textarea>
       </div>
       <div class="card-footer">

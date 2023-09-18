@@ -9,3 +9,10 @@ const pageSchema = Joi.object({
 });
 
 module.exports = pageSchema;
+
+module.exports.commentSchema = Joi.object({
+  comment: Joi.object({
+    author: Joi.string().required(),
+    body: Joi.string().required(),
+  }).required(),
+});

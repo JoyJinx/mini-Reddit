@@ -1,7 +1,11 @@
 const Page = require("../models/pages.js");
+const Comment = require("../models/comments.js");
 
 async function deleteAll() {
   await Page.deleteMany({});
+}
+async function commentGone() {
+  await Comment.deleteMany({});
 }
 async function seedData() {
   await Page.insertMany([
@@ -37,5 +41,4 @@ async function seedData() {
     },
   ]);
 }
-deleteAll();
-seedData();
+deleteAll().then(commentGone()).then(seedData());
