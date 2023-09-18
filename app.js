@@ -37,6 +37,12 @@ app.use(
 app.use("/p", pageRoutes);
 app.use("/p/:id/comments", commentRoutes);
 
+app.use((err, req, res, next) => {
+  const { statusCode = 500 } = err;
+  if (!err.message) err.message = "Something went wrong!";
+  res.status(statusCode).render("pages/error.ejs", { err });
+});
+
 app.listen(3000, () => {
   console.log("Listening on port 3000:");
 });
