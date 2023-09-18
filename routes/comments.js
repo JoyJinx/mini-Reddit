@@ -40,7 +40,7 @@ router.delete(
   "/:commentId",
   catchAsync(async (req, res) => {
     const { id, commentId } = req.params;
-    const subpage = await Page.findById(id);
+    await Page.findByIdAndUpdate(id, { $pull: { comments: commentId } });
     await Comment.findByIdAndDelete(commentId);
     res.redirect(`/p/${id}`);
   })

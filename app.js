@@ -6,6 +6,7 @@ const engine = require("ejs-mate");
 const methodOverride = require("method-override");
 const pageRoutes = require("./routes/subpages.js");
 const commentRoutes = require("./routes/comments.js");
+const AppError = require("./utils/AppError.js");
 
 app.engine("ejs", engine);
 
@@ -36,6 +37,10 @@ app.use(
 
 app.use("/p", pageRoutes);
 app.use("/p/:id/comments", commentRoutes);
+
+app.all("*", (req, res, next) => {
+  next(new AppError(404, "Page Not Found!"));
+});
 
 app.use((err, req, res, next) => {
   const { statusCode = 500 } = err;
