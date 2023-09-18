@@ -1,25 +1,32 @@
 <% layout('layouts/boilerplate') %>
+<div class="row">
+  <div class="col-6 offset-3 mt-3">
+    <h1 class="mt-5">All Posts</h1>
+    <% for(let page of pages) { %>
+    <div class="card mb-5">
+      <div class="card-header">
+        <div class="card-title"><%= page.body %></div>
+        <span>-By <%= page.author %></span>
+      </div>
+      <div class="col-4 offset-4">
+        <img class="img-fluid my-2" src="<%= page.img %>" />
+      </div>
+      <div class="card-footer">
+        <span>likes: <%= page.likes %></span>
+        <span
+          ><a
+            class="btn btn-sm btn-info"
+            type="button"
+            href="/p/<%= page._id %>"
+            >Details</a
+          ></span
+        >
+      </div>
+    </div>
 
-<div class="col-6 offset-3 mt-3">
-  <h1 class="mt-5">All Posts</h1>
-  <% for(let page of pages) { %>
-  <div class="card mb-5">
-    <div class="card-header">
-      <div class="card-title"><%= page.body %></div>
-      <span>-By <%= page.author %></span>
-    </div>
-    <div class="col-4 offset-4">
-      <img class="img-fluid my-2" src="<%= page.img %>" />
-    </div>
-    <div class="card-footer">
-      <span>likes: <%= page.likes %></span>
-      <span
-        ><a class="btn btn-sm btn-info" type="button" href="/p/<%= page._id %>"
-          >Details</a
-        ></span
-      >
-    </div>
+    <% } %>
   </div>
-
-  <% } %>
+  <div class="col-3 mt-5">
+    <a class="btn btn-primary" type="button" href="/p/new">Create New Post</a>
+  </div>
 </div>

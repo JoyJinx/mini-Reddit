@@ -1,7 +1,7 @@
 <% layout("layouts/boilerplate") %>
-
-<div class="row">
-  <div class="col-4 offset-7 mt-5">
+<!-- offset-7 mt-5 -->
+<div class="row align-items-start">
+  <div class="col-4 order-2 mt-5">
     <form action="/p/<%= foundPage._id %>/comments" method="POST">
       <div class="card-header">
         <div class="form-group">
@@ -25,56 +25,53 @@
         ></textarea>
       </div>
       <div class="card-footer">
-        <div>
-          <a
-            class="btn btn-sm btn-secondary"
-            type="button"
-            href="/p/<%= foundPage._id %>"
-            >Cancel</a
-          >
-        </div>
-        <div>
-          <button class="btn btn-sm btn-success">Save</button>
-        </div>
+        <button class="btn btn-sm btn-success">Submit</button>
       </div>
     </form>
     <div class="mt-3">
-      <% for (let comment of foundPage.comments) {%>
-        <div class="card">
-          <p>
-            <%= comment.body %>
-          </p>
-          <span>-By <%= comment.author %></span>
-          </div>
+      <% if(foundPage.comments.length) {%> <% for (let comment of
+      foundPage.comments) {%>
+      <div class="card">
+        <div class="card-header">-By <%= comment.author %></div>
+        <div class="card-body"><%= comment.body %></div>
+        <div class="card-footer">
+          <form
+            action="/p/<%= foundPage._id %>/comments/<%= comment._id %>?_method=DELETE"
+            method="POST"
+          >
+            <button class="btn btn-danger">Delete</button>
+          </form>
         </div>
-        <% } %>
+      </div>
     </div>
-  </div>
-
-  <div class="col-6 offset-1 mt-5">
-    <div class="card mb-5">
-      <div class="card-header">
-        <div class="card-title"><%= foundPage.body %></div>
-        <span>-By <%= foundPage.author %></span>
-      </div>
-      <div class="col-4 offset-4">
-        <img class="img-fluid my-2" src="<%= foundPage.img %>" />
-      </div>
-      <div class="card-footer">
-        <span class="mr-auto">likes: <%= foundPage.likes %></span>
-        <div class="d-flex justify-content-end">
-          <div>
-            <a class="btn btn-sm btn-secondary" type="button" href="/p">Back</a>
-          </div>
-          <div>
-            <a
-              class="btn btn-sm btn-info"
-              type="button"
-              href="/p/<%= foundPage._id %>/edit"
-              >Edit</a
-            >
-          </div>
-          <div>
+    <% } %> <% } %>
+    <!-- </div> -->
+    <!-- offset-1 mt-5 -->
+    <div class="col-6 offset-1 order-1 mt-5">
+      <div class="card mb-5">
+        <div class="card-header">
+          <div class="card-title"><%= foundPage.body %></div>
+          <span>-By <%= foundPage.author %></span>
+        </div>
+        <div class="col-4 offset-4">
+          <img class="img-fluid my-2" src="<%= foundPage.img %>" />
+        </div>
+        <div class="card-footer">
+          <span class="mr-auto">likes: <%= foundPage.likes %></span>
+          <div class="d-flex justify-content-end">
+            <div>
+              <a class="btn btn-sm btn-secondary" type="button" href="/p"
+                >Back</a
+              >
+            </div>
+            <div>
+              <a
+                class="btn btn-sm btn-info"
+                type="button"
+                href="/p/<%= foundPage._id %>/edit"
+                >Edit</a
+              >
+            </div>
             <form action="/p/<%= foundPage._id %>?_method=DELETE" method="POST">
               <button class="btn btn-sm btn-danger">Delete</button>
             </form>

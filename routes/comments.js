@@ -13,4 +13,11 @@ router.post("/", async (req, res) => {
   res.redirect(`/p/${subpage._id}`);
 });
 
+router.delete("/:commentId", async (req, res) => {
+  const { id, commentId } = req.params;
+  const subpage = await Page.findById(id);
+  await Comment.findByIdAndDelete(commentId);
+  res.redirect(`/p/${id}`);
+});
+
 module.exports = router;
