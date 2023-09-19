@@ -23,7 +23,7 @@ router.post(
   catchAsync(async (req, res) => {
     const subpage = await Page.findById(req.params.id);
     const comment = new Comment(req.body.comment);
-    subpage.comments.push(comment);
+    subpage.comments.unshift(comment);
     await comment.save();
     await subpage.save();
     res.redirect(`/p/${subpage._id}`);

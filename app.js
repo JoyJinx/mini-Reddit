@@ -7,6 +7,7 @@ const methodOverride = require("method-override");
 const pageRoutes = require("./routes/subpages.js");
 const commentRoutes = require("./routes/comments.js");
 const AppError = require("./utils/AppError.js");
+const session = require("express-session");
 
 app.engine("ejs", engine);
 
@@ -16,6 +17,18 @@ app.set("view engine", "ejs");
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(methodOverride("_method"));
+
+const sessionConfig = {
+  secret: "thereisnotomorrow",
+  resave: false,
+  saveUninitialized: false,
+  cookie: {
+    httpOnly: true,
+    expires: Date.now() + 900000,
+    maxAge: 900000,
+  },
+};
+app.use(session(sessionConfig));
 
 app.use("/public", express.static(path.join(__dirname, "public")));
 app.use(
