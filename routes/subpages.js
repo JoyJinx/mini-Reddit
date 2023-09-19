@@ -4,6 +4,17 @@ const mongoose = require("mongoose");
 const Page = require("../models/pages.js");
 const AppError = require("../utils/AppError.js");
 const catchAsync = require("../utils/catchAsync.js");
+const { pageSchema } = require("../Joischemas.js");
+
+const validatePage = (req, res, next) => {
+  const { error } = pageSchema.validate(req.body);
+  if (error) {
+    const msg = error.details.map((x) => x.message).join(",");
+    throw new AppError(400, msg);
+  } else {
+    next();
+  }
+};
 
 router.get(
   "/",
@@ -25,8 +36,9 @@ router.get(
 );
 router.post(
   "/",
+  validatePage,
   catchAsync(async (req, res) => {
-    const newPage = await Page.create(req.body);
+    const newPage = await Page.create(req.body.page);
     res.redirect("/p");
   })
 );
@@ -40,9 +52,10 @@ router.get(
 );
 router.patch(
   "/:id",
+  validatePage,
   catchAsync(async (req, res) => {
     const { id } = req.params;
-    const updatedPage = await Page.findByIdAndUpdate(id, req.body, {
+    const updatedPage = await Page.findByIdAndUpdate(id, req.body.page, {
       new: true,
     });
     res.redirect(`/p/${id}`);

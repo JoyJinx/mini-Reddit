@@ -1,14 +1,13 @@
 const Joi = require("joi");
 
-const pageSchema = Joi.object({
+module.exports.pageSchema = Joi.object({
   page: Joi.object({
     author: Joi.string().required(),
     body: Joi.string().required(),
-    img: Joi.string(),
+    img: Joi.string().empty(""),
+    comments: Joi.array(),
   }).required(),
 });
-
-module.exports = pageSchema;
 
 module.exports.commentSchema = Joi.object({
   comment: Joi.object({
