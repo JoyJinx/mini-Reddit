@@ -39,6 +39,7 @@ router.post(
   validatePage,
   catchAsync(async (req, res) => {
     const newPage = await Page.create(req.body.page);
+    req.flash("success", "Created new post!");
     res.redirect("/p");
   })
 );

@@ -8,6 +8,15 @@ const pageRoutes = require("./routes/subpages.js");
 const commentRoutes = require("./routes/comments.js");
 const AppError = require("./utils/AppError.js");
 const session = require("express-session");
+const flash = require("connect-flash");
+
+mongoose.connect("mongodb://localhost:27017/miniR");
+
+const db = mongoose.connection;
+db.on("error", console.error.bind(console, "connection error: "));
+db.once("open", function () {
+  console.log("Connected successfully");
+});
 
 app.engine("ejs", engine);
 
@@ -47,6 +56,13 @@ app.use(
   "/fa",
   express.static(path.join(__dirname, "node_modules/font-awesome/css"))
 );
+
+app.use(flash());
+app.use((req, res, next) => {
+  res.locals.success = req.flash("success");
+  res.locals.error = req.flash("error");
+  next();
+});
 
 app.use("/p", pageRoutes);
 app.use("/p/:id/comments", commentRoutes);
