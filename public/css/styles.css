@@ -4,8 +4,6 @@
   box-sizing: border-box;
 }
 
-@import url("../../node_modules/font-awesome/css/font-awesome.min.css");
-
 .text-small {
   font-size: 0.9rem;
 }

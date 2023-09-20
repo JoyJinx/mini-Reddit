@@ -9,6 +9,10 @@ const commentRoutes = require("./routes/comments.js");
 const AppError = require("./utils/AppError.js");
 const session = require("express-session");
 const flash = require("connect-flash");
+const passport = require("passport");
+const LocalStrategy = require("passport-local");
+const User = require("./models/users.js");
+const userRoutes = require("./routes/users.js");
 
 mongoose.connect("mongodb://localhost:27017/miniR");
 
@@ -27,6 +31,8 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(methodOverride("_method"));
 
+app.use("/public", express.static(path.join(__dirname, "public")));
+
 const sessionConfig = {
   secret: "thereisnotomorrow",
   resave: false,
@@ -38,16 +44,22 @@ const sessionConfig = {
   },
 };
 app.use(session(sessionConfig));
-
-app.use("/public", express.static(path.join(__dirname, "public")));
-
 app.use(flash());
+
+app.use(passport.initialize());
+app.use(passport.session());
+passport.use(new LocalStrategy(User.authenticate()));
+
+passport.serializeUser(User.serializeUser());
+passport.deserializeUser(User.deserializeUser());
+
 app.use((req, res, next) => {
   res.locals.success = req.flash("success");
   res.locals.error = req.flash("error");
   next();
 });
 
+app.use("/", userRoutes);
 app.use("/p", pageRoutes);
 app.use("/p/:id/comments", commentRoutes);
 
