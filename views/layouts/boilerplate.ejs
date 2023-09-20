@@ -4,9 +4,12 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Document</title>
-    <link rel="stylesheet" type="text/css" href="/css/bootstrap.min.css" />
+    <link
+      rel="stylesheet"
+      type="text/css"
+      href="/public/css/bootstrap.min.css"
+    />
     <link rel="stylesheet" type="text/css" href="/public/css/styles.css" />
-    <link rel="stylesheet" type="text/css" href="/fa/font-awesome.min.css" />
     <link rel="icon" type="text/css" href="/public/favicon.ico" />
   </head>
   <body class="d-flex flex-column vh-100">
@@ -15,12 +18,12 @@
     <main class="container-fluid mt-5">
       <%- include("../partials/flash.ejs") %> <%- body %>
     </main>
-
-    <script type="text/script" src="/js/jquery/dist/jquery.min.js"></script>
     <script
-      type="text/script"
-      src="/js/bootstrap/dist/js/bootstrap.min.js"
+      src="https://kit.fontawesome.com/52efd13106.js"
+      crossorigin="anonymous"
     ></script>
+    <script type="text/script" src="/public/js/jquery-3.7.1.min.js"></script>
+    <script type="text/script" src="/public/js/bootstrap.min.js"></script>
     <script>
       // Example starter JavaScript for disabling form submissions if there are invalid fields
       (function () {
