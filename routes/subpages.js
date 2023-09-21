@@ -1,26 +1,16 @@
 const express = require("express");
 const router = express.Router();
-const mongoose = require("mongoose");
+// const mongoose = require("mongoose");
 const Page = require("../models/pages.js");
-const AppError = require("../utils/AppError.js");
+// const AppError = require("../utils/AppError.js");
 const catchAsync = require("../utils/catchAsync.js");
-const { pageSchema } = require("../Joischemas.js");
-const { isLoggedIn } = require("../middleware.js");
-
-const validatePage = (req, res, next) => {
-  const { error } = pageSchema.validate(req.body);
-  if (error) {
-    const msg = error.details.map((x) => x.message).join(",");
-    throw new AppError(400, msg);
-  } else {
-    next();
-  }
-};
+// const { pageSchema } = require("../Joischemas.js");
+const { isLoggedIn, isAuthorized, validatePage } = require("../middleware.js");
 
 router.get(
   "/",
   catchAsync(async (req, res) => {
-    const pages = await Page.find({});
+    const pages = await Page.find({}).populate("author");
     res.render("pages/index.ejs", { pages });
   })
 );
@@ -31,7 +21,9 @@ router.get(
   "/:id",
   catchAsync(async (req, res) => {
     const { id } = req.params;
-    const foundPage = await Page.findById(id).populate("comments");
+    const foundPage = await Page.findById(id)
+      .populate({ path: "comments", populate: { path: "author" } })
+      .populate("author");
     res.render("pages/show.ejs", { foundPage });
   })
 );
@@ -40,7 +32,9 @@ router.post(
   isLoggedIn,
   validatePage,
   catchAsync(async (req, res) => {
-    const newPage = await Page.create(req.body.page);
+    const newPage = new Page(req.body.page);
+    newPage.author = req.user._id;
+    await newPage.save();
     req.flash("success", "Created new post!");
     res.redirect("/p");
   })
@@ -48,6 +42,7 @@ router.post(
 router.get(
   "/:id/edit",
   isLoggedIn,
+  isAuthorized,
   catchAsync(async (req, res) => {
     const { id } = req.params;
     const foundPage = await Page.findById(id);
@@ -57,6 +52,7 @@ router.get(
 router.patch(
   "/:id",
   isLoggedIn,
+  isAuthorized,
   validatePage,
   catchAsync(async (req, res) => {
     const { id } = req.params;
@@ -70,6 +66,7 @@ router.patch(
 router.delete(
   "/:id",
   isLoggedIn,
+  isAuthorized,
   catchAsync(async (req, res) => {
     const { id } = req.params;
     const foundPage = await Page.findByIdAndDelete(id);

@@ -12,10 +12,13 @@ const mongoose = require("mongoose");
 // }
 
 const commentsSchema = new mongoose.Schema({
-  author: String,
+  author: {
+    type: mongoose.Schema.Types.ObjectId,
+    ref: "User",
+  },
   body: String,
-  post: mongoose.Schema.Types.ObjectId,
-  comment: mongoose.Schema.Types.ObjectId,
+  page: { type: mongoose.Schema.Types.ObjectId, ref: "Page" },
+  comments: [{ type: mongoose.Schema.Types.ObjectId, ref: "Comment" }],
   likes: { type: Number, default: 0 },
 });
 

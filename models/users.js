@@ -7,6 +7,24 @@ const userSchema = new mongoose.Schema({
     required: true,
     unique: true,
   },
+  pages: [
+    {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: "Page",
+    },
+  ],
+  comments: [
+    {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: "Comment",
+    },
+  ],
+  likes: [
+    {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: "Like",
+    },
+  ],
 });
 
 userSchema.plugin(passportLocalMongoose);

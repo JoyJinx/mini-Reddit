@@ -36,7 +36,9 @@ router.post(
   }),
   catchAsync(async (req, res) => {
     req.flash("success", "Welcome back!");
-    res.redirect("/p");
+    const redirectUrl = req.session.lastUrl || "/p";
+    delete req.session.lastUrl;
+    res.redirect(redirectUrl);
   })
 );
 router.get("/logout", (req, res, next) => {

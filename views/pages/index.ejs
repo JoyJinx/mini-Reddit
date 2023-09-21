@@ -5,12 +5,13 @@
     <% for(let page of pages) { %>
     <div class="card mb-5">
       <div class="card-header">
-        <div class="card-title"><%= page.body %></div>
-        <span>-By <%= page.author %></span>
+        <div class="card-title"><%= page.title %></div>
+        <span>-By <%= page.author.username %></span>
       </div>
       <div class="col-4 offset-4">
         <img class="img-fluid my-2" src="<%= page.img %>" />
       </div>
+      <div class="card-body"><%= page.body %></div>
       <div class="card-footer">
         <span>likes: <%= page.likes %></span>
         <span

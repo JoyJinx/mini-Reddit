@@ -3,7 +3,11 @@ const mongoose = require("mongoose");
 const Comment = require("./comments");
 
 const pageSchema = new mongoose.Schema({
-  author: String,
+  author: {
+    type: mongoose.Schema.Types.ObjectId,
+    ref: "User",
+  },
+  title: String,
   body: String,
   img: String,
   comments: [{ type: mongoose.Schema.Types.ObjectId, ref: "Comment" }],
