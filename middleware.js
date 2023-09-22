@@ -1,7 +1,7 @@
 const AppError = require("./utils/AppError");
 const Page = require("./models/pages");
 const Comment = require("./models/comments");
-const { pageSchema, commentSchema } = require("./Joischemas");
+const { pageSchema, commentSchema } = require("./joiSchemas");
 
 module.exports.isLoggedIn = (req, res, next) => {
   if (!req.isAuthenticated()) {
