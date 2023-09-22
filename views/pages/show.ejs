@@ -49,6 +49,7 @@
             class="form-control"
             id="exampleFormControlTextarea1"
             rows="3"
+            placeholder="Write here..."
             name="comment[body]"
             required
           ></textarea>
@@ -64,6 +65,8 @@
       <div class="card">
         <div class="card-header">-By <%= comment.author.username %></div>
         <div class="card-body"><%= comment.body %></div>
+
+        <% if(currentUser && comment.author.equals(currentUser)) {%>
         <div class="card-footer">
           <form
             action="/p/<%= foundPage._id %>/comments/<%= comment._id %>?_method=DELETE"
@@ -78,6 +81,7 @@
             >Edit</a
           >
         </div>
+        <% } %>
       </div>
 
       <% } %>

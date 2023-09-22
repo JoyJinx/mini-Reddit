@@ -8,19 +8,7 @@
       method="POST"
       novalidate
     >
-      <div class="card-header">
-        <div class="form-group">
-          <label for="exampleFormControlInput1">Edit Author!!!</label>
-          <input
-            type="text"
-            class="form-control"
-            id="exampleFormControlInput1"
-            placeholder="Username"
-            name="comment[author]"
-            value="<%= foundComment.author %>"
-            required
-          />
-        </div>
+    <div class="card-header">
         <div class="form-group">
           <label for="exampleFormControlTextarea1">Edit comment</label>
           <textarea
@@ -32,6 +20,7 @@
           >
   <%= foundComment.body %></textarea
           >
+        </div>
         </div>
       </div>
       <div class="card-footer">

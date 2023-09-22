@@ -9,6 +9,7 @@ const {
   validateComment,
   isAuthorized,
   isLoggedIn,
+  isCommentAuthorized,
 } = require("../middleware.js");
 
 router.post(
@@ -28,6 +29,8 @@ router.post(
 
 router.get(
   "/:commentId/edit",
+  isLoggedIn,
+  isCommentAuthorized,
   catchAsync(async (req, res) => {
     const { id, commentId } = req.params;
     const foundComment = await Comment.findById(commentId);
@@ -37,6 +40,8 @@ router.get(
 
 router.patch(
   "/:commentId",
+  isLoggedIn,
+  isCommentAuthorized,
   validateComment,
   catchAsync(async (req, res) => {
     const { id, commentId } = req.params;
@@ -48,6 +53,8 @@ router.patch(
 
 router.delete(
   "/:commentId",
+  isLoggedIn,
+  isCommentAuthorized,
   catchAsync(async (req, res) => {
     const { id, commentId } = req.params;
     await Page.findByIdAndUpdate(id, { $pull: { comments: commentId } });

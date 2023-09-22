@@ -1,5 +1,6 @@
 const AppError = require("./utils/AppError");
 const Page = require("./models/pages");
+const Comment = require("./models/comments");
 const { pageSchema, commentSchema } = require("./Joischemas");
 
 module.exports.isLoggedIn = (req, res, next) => {
@@ -39,4 +40,14 @@ module.exports.validateComment = (req, res, next) => {
   } else {
     next();
   }
+};
+
+module.exports.isCommentAuthorized = async (req, res, next) => {
+  const { id, commentId } = req.params;
+  const foundComment = await Comment.findById(commentId);
+  if (!foundComment.author.equals(req.user._id)) {
+    req.flash("error", "You don't have permission to do that!");
+    return res.redirect(`/p/${id}`);
+  }
+  next();
 };

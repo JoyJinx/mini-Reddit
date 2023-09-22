@@ -41,6 +41,7 @@ const sessionConfig = {
     httpOnly: true,
     expires: Date.now() + 900000,
     maxAge: 900000,
+    sameSite: "Lax",
   },
 };
 app.use(session(sessionConfig));
