@@ -11,16 +11,16 @@
         <img class="img-fluid my-2" src="<%= foundPage.img.path %>" />
       </div>
       <div class="card-body"><%= foundPage.body %></div>
-      <div class="card-footer">
+      <div class="card-footer d-flex justify-content-between">
         <span class="mr-auto">likes: <%= foundPage.likes %></span>
-        <div class="d-flex justify-content-end">
+        <div class="d-flex">
           <div>
             <a class="btn btn-sm btn-secondary" type="button" href="/p">Back</a>
           </div>
           <% if(currentUser && foundPage.author.equals(currentUser)) {%>
           <div>
             <a
-              class="btn btn-sm btn-info"
+              class="mx-1 btn btn-sm btn-info"
               type="button"
               href="/p/<%= foundPage._id %>/edit"
               >Edit</a
@@ -57,7 +57,7 @@
       </div>
 
       <div class="card-footer">
-        <button class="btn btn-sm btn-success">Submit</button>
+        <button class="mt-1 btn btn-sm btn-success">Submit</button>
       </div>
     </form>
     <div class="mt-3">

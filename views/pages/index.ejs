@@ -1,7 +1,16 @@
 <% layout('layouts/boilerplate') %>
 <div class="row">
   <div class="col-6 offset-3 mt-3">
-    <h1 class="mt-5">All Posts</h1>
+    <div class="d-flex justify-content-between">
+      <h1 class="mt-5">All Posts</h1>
+      <a
+        style="height: 40%"
+        class="btn btn-primary align-self-end mb-2"
+        type="button"
+        href="/p/new"
+        >Create New Post</a
+      >
+    </div>
     <% for(let page of pages) { %>
     <div class="card mb-5">
       <div class="card-header">
@@ -12,7 +21,7 @@
         <img class="img-fluid my-2" src="<%= page.img.path %>" />
       </div>
       <div class="card-body"><%= page.body %></div>
-      <div class="card-footer">
+      <div class="d-flex card-footer justify-content-between">
         <span>likes: <%= page.likes %></span>
         <span
           ><a
@@ -26,8 +35,5 @@
     </div>
 
     <% } %>
-  </div>
-  <div class="col-3 mt-5">
-    <a class="btn btn-primary" type="button" href="/p/new">Create New Post</a>
   </div>
 </div>
