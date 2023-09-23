@@ -40,9 +40,21 @@ module.exports.getEdit = async (req, res) => {
 
 module.exports.patchEdit = async (req, res) => {
   const { id } = req.params;
-  const updatedPage = await Page.findByIdAndUpdate(id, req.body.page, {
-    new: true,
+  const updatedPage = await Page.findByIdAndUpdate(
+    id,
+    { ...req.body.page },
+    {
+      new: true,
+    }
+  );
+  const result = await cloudinary.uploader.upload(req.file.path, {
+    allowed_formats: ["jpeg", "jpg", "png"],
+    upload_preset: "myPreset",
   });
+  await cloudinary.uploader.destroy(updatedPage.img.filename);
+  updatedPage.img.path = result.secure_url;
+  updatedPage.img.filename = result.public_id;
+  updatedPage.save();
   req.flash("success", "Updated the post!");
   res.redirect(`/p/${id}`);
 };
@@ -50,6 +62,7 @@ module.exports.patchEdit = async (req, res) => {
 module.exports.pageDelete = async (req, res) => {
   const { id } = req.params;
   const foundPage = await Page.findByIdAndDelete(id);
+  await cloudinary.uploader.destroy(foundPage.img.filename);
   req.flash("success", "Post deleted successfully!");
   res.redirect("/p");
 };

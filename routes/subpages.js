@@ -20,6 +20,7 @@ router.patch(
   "/:id",
   isLoggedIn,
   isAuthorized,
+  upload.single("page[img]"),
   validatePage,
   catchAsync(pages.patchEdit)
 );

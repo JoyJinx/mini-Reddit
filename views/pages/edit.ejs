@@ -7,6 +7,7 @@
       action="/p/<%= foundPage._id %>?_method=PATCH"
       method="POST"
       novalidate
+      enctype="multipart/form-data"
     >
       <div class="card-header">
         <div class="form-group">
@@ -38,17 +39,16 @@
       </div>
       <div class="card-body">
         <div class="col-4 offset-4">
-          <img class="img-fluid my-2" src="<%= foundPage.img %>" />
+          <img class="img-fluid my-2" src="<%= foundPage.img.path %>" />
         </div>
         <div class="mt-2">
           <div class="form-group mt-3">
-            <label for="exampleFormControlInput2">Edit image url</label>
+            <label for="exampleFormControlInput2">Change Image</label>
             <input
-              type="text"
+              type="file"
               class="form-control"
               id="exampleFormControlInput2"
               name="page[img]"
-              value="<%= foundPage.img %>"
             />
           </div>
         </div>
