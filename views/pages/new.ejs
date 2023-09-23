@@ -1,7 +1,13 @@
 <% layout("layouts/boilerplate") %>
 
 <div class="col-6 offset-3 mt-5">
-  <form class="needs-validation" action="/p" method="POST" novalidate>
+  <form
+    class="needs-validation"
+    action="/p"
+    method="POST"
+    novalidate
+    enctype="multipart/form-data"
+  >
     <div class="form-group">
       <label for="exampleFormControlInput1">Title</label>
       <input
@@ -27,10 +33,9 @@
     <div class="form-group mt-3">
       <label for="exampleFormControlInput2">Your post Image</label>
       <input
-        type="text"
+        type="file"
         class="form-control"
         id="exampleFormControlInput2"
-        placeholder="image url"
         name="page[img]"
       />
     </div>

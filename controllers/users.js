@@ -25,7 +25,7 @@ module.exports.getLogin = (req, res) => {
 };
 
 module.exports.postLogin = async (req, res) => {
-  req.flash("success", "Welcome back!");
+  req.flash("success", `Welcome back ${req.user.username}!`);
   const redirectUrl = req.session.lastUrl || "/p";
   delete req.session.lastUrl;
   res.redirect(redirectUrl);

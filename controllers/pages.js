@@ -1,4 +1,5 @@
 const Page = require("../models/pages");
+const cloudinary = require("../cloudinary/index");
 
 module.exports.getPages = async (req, res) => {
   const pages = await Page.find({}).populate("author");
@@ -19,6 +20,12 @@ module.exports.getPageId = async (req, res) => {
 
 module.exports.postPage = async (req, res) => {
   const newPage = new Page(req.body.page);
+  const result = await cloudinary.uploader.upload(req.file.path, {
+    allowed_formats: ["jpeg", "jpg", "png"],
+    upload_preset: "myPreset",
+  });
+  newPage.img.path = result.secure_url;
+  newPage.img.filename = result.public_id;
   newPage.author = req.user._id;
   await newPage.save();
   req.flash("success", "Created new post!");

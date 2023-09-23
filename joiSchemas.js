@@ -5,7 +5,7 @@ module.exports.pageSchema = Joi.object({
     author: Joi.string(),
     title: Joi.string().required(),
     body: Joi.string().required(),
-    img: Joi.string().empty(""),
+    img: Joi.object().empty(""),
     comments: Joi.array(),
   }).required(),
 });
