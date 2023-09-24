@@ -20,16 +20,35 @@ module.exports.getPageId = async (req, res) => {
 
 module.exports.postPage = async (req, res) => {
   const newPage = new Page(req.body.page);
-  const result = await cloudinary.uploader.upload(req.file.path, {
-    allowed_formats: ["jpeg", "jpg", "png"],
-    upload_preset: "myPreset",
-  });
-  newPage.img.path = result.secure_url;
-  newPage.img.filename = result.public_id;
+  if (req.file) {
+    const result = await cloudinary.uploader.upload(req.file.path, {
+      allowed_formats: ["jpeg", "jpg", "png"],
+      upload_preset: "myPreset",
+    });
+    newPage.img.path = result.secure_url;
+    newPage.img.filename = result.public_id;
+  }
   newPage.author = req.user._id;
   await newPage.save();
   req.flash("success", "Created new post!");
   res.redirect("/p");
+};
+
+module.exports.postLike = async (req, res) => {
+  const { id } = req.params;
+  const foundPage = await Page.findById(id);
+  const foundUserLike = foundPage.likes.some(function (like) {
+    return like.equals(req.user._id);
+  });
+  if (foundUserLike) {
+    foundPage.likes.pull(req.user._id);
+    req.flash("success", "removed like!!");
+  } else {
+    foundPage.likes.unshift(req.user._id);
+    req.flash("success", "liked!");
+  }
+  await foundPage.save();
+  res.redirect(`/p/${id}`);
 };
 
 module.exports.getEdit = async (req, res) => {
@@ -40,20 +59,30 @@ module.exports.getEdit = async (req, res) => {
 
 module.exports.patchEdit = async (req, res) => {
   const { id } = req.params;
+  console.log(req.body);
+  const { title, body } = req.body.page;
   const updatedPage = await Page.findByIdAndUpdate(
     id,
-    { ...req.body.page },
+    { title, body },
     {
       new: true,
     }
   );
-  const result = await cloudinary.uploader.upload(req.file.path, {
-    allowed_formats: ["jpeg", "jpg", "png"],
-    upload_preset: "myPreset",
-  });
-  await cloudinary.uploader.destroy(updatedPage.img.filename);
-  updatedPage.img.path = result.secure_url;
-  updatedPage.img.filename = result.public_id;
+  if (req.file) {
+    const result = await cloudinary.uploader.upload(req.file.path, {
+      allowed_formats: ["jpeg", "jpg", "png"],
+      upload_preset: "myPreset",
+    });
+    console.log(result);
+    if (updatedPage.img.filename) {
+      await cloudinary.uploader.destroy(updatedPage.img.filename);
+    }
+    updatedPage.img.path = result.secure_url;
+    updatedPage.img.filename = result.public_id;
+  } else if (req.body.removeImg) {
+    await cloudinary.uploader.destroy(updatedPage.img.filename);
+    updatedPage.img = {};
+  }
   updatedPage.save();
   req.flash("success", "Updated the post!");
   res.redirect(`/p/${id}`);
@@ -62,7 +91,9 @@ module.exports.patchEdit = async (req, res) => {
 module.exports.pageDelete = async (req, res) => {
   const { id } = req.params;
   const foundPage = await Page.findByIdAndDelete(id);
-  await cloudinary.uploader.destroy(foundPage.img.filename);
+  if (foundPage.img.filename) {
+    await cloudinary.uploader.destroy(foundPage.img.filename);
+  }
   req.flash("success", "Post deleted successfully!");
   res.redirect("/p");
 };

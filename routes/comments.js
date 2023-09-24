@@ -16,6 +16,7 @@ router.get(
   isCommentAuthorized,
   catchAsync(comments.getEdit)
 );
+router.post("/:commentId", isLoggedIn, catchAsync(comments.postCommentLike));
 
 router.patch(
   "/:commentId",

@@ -11,6 +11,23 @@ module.exports.postComment = async (req, res) => {
   res.redirect(`/p/${subpage._id}`);
 };
 
+module.exports.postCommentLike = async (req, res) => {
+  const { id, commentId } = req.params;
+  const foundComment = await Comment.findById(commentId);
+  const foundUserCommentLike = foundComment.likes.some(function (like) {
+    return like.equals(req.user._id);
+  });
+  if (foundUserCommentLike) {
+    foundComment.likes.pull(req.user._id);
+    req.flash("success", "removed like!!");
+  } else {
+    foundComment.likes.unshift(req.user._id);
+    req.flash("success", "liked!");
+  }
+  await foundComment.save();
+  res.redirect(`/p/${id}`);
+};
+
 module.exports.getEdit = async (req, res) => {
   const { id, commentId } = req.params;
   const foundComment = await Comment.findById(commentId);

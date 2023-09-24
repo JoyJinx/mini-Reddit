@@ -8,6 +8,7 @@ module.exports.pageSchema = Joi.object({
     img: Joi.object().empty(""),
     comments: Joi.array(),
   }).required(),
+  removeImg: Joi.string(),
 });
 
 module.exports.commentSchema = Joi.object({

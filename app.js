@@ -72,6 +72,10 @@ app.use("/", userRoutes);
 app.use("/p", pageRoutes);
 app.use("/p/:id/comments", commentRoutes);
 
+app.get("/", (req, res) => {
+  res.render("pages/home.ejs");
+});
+
 app.all("*", (req, res, next) => {
   next(new AppError(404, "Page Not Found!"));
 });

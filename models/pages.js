@@ -10,7 +10,7 @@ const pageSchema = new mongoose.Schema({
   body: String,
   img: { path: String, filename: String },
   comments: [{ type: mongoose.Schema.Types.ObjectId, ref: "Comment" }],
-  likes: { type: Number, default: 0 },
+  likes: [{ type: mongoose.Schema.Types.ObjectId, ref: "User" }],
 });
 
 pageSchema.post("findOneAndDelete", async (page) => {

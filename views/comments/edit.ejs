@@ -8,7 +8,7 @@
       method="POST"
       novalidate
     >
-    <div class="card-header">
+      <div class="card-body">
         <div class="form-group">
           <label for="exampleFormControlTextarea1">Edit comment</label>
           <textarea
@@ -21,10 +21,13 @@
   <%= foundComment.body %></textarea
           >
         </div>
-        </div>
       </div>
-      <div class="card-footer">
-        <span class="text-muted">likes: <%= foundComment.likes %></span>
+
+      <div class="card-footer d-flex justify-content-between">
+        <span class="text-muted"
+          ><i class="fa-regular fa-heart fa-lg" style="color: #e01b24"></i> <%=
+          foundComment.likes.length %></span
+        >
         <div class="d-flex justify-content-end">
           <div>
             <a
@@ -35,7 +38,7 @@
             >
           </div>
           <div>
-            <button class="btn btn-sm btn-success">Save</button>
+            <button class="mx-1 btn btn-sm btn-success">Save</button>
           </div>
         </div>
       </div>

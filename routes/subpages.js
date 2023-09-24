@@ -15,6 +15,7 @@ router.post(
   validatePage,
   catchAsync(pages.postPage)
 );
+router.post("/:id/like", isLoggedIn, catchAsync(pages.postLike));
 router.get("/:id/edit", isLoggedIn, isAuthorized, catchAsync(pages.getEdit));
 router.patch(
   "/:id",

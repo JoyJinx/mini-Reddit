@@ -8,7 +8,7 @@ const commentsSchema = new mongoose.Schema({
   body: String,
   page: { type: mongoose.Schema.Types.ObjectId, ref: "Page" },
   comments: [{ type: mongoose.Schema.Types.ObjectId, ref: "Comment" }],
-  likes: { type: Number, default: 0 },
+  likes: [{ type: mongoose.Schema.Types.ObjectId, ref: "User" }],
 });
 
 const Comment = mongoose.model("Comment", commentsSchema);

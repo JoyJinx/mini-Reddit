@@ -12,7 +12,24 @@
       </div>
       <div class="card-body"><%= foundPage.body %></div>
       <div class="card-footer d-flex justify-content-between">
-        <span class="mr-auto">likes: <%= foundPage.likes %></span>
+        <form
+          id="likeForm"
+          action="/p/<%= foundPage._id  %>/like"
+          method="POST"
+        >
+          <span class="mr-auto">
+            <% if (currentUser && foundPage.likes.includes(currentUser._id)) {
+            %>
+            <button class="btn">
+              <i class="fa-solid fa-lg fa-heart" style="color: #e01b24"></i>
+            </button>
+            <% }else { %>
+            <button class="btn">
+              <i class="fa-regular fa-lg fa-heart" style="color: #e01b24"></i>
+            </button>
+            <% } %> <%= foundPage.likes.length %></span
+          >
+        </form>
         <div class="d-flex">
           <div>
             <a class="btn btn-sm btn-secondary" type="button" href="/p">Back</a>
@@ -35,7 +52,7 @@
     </div>
   </div>
 
-  <div class="col-6 mt-5">
+  <div class="col-6 mt-4">
     <form
       class="needs-validation"
       action="/p/<%= foundPage._id %>/comments"
@@ -66,22 +83,47 @@
         <div class="card-header">-By <%= comment.author.username %></div>
         <div class="card-body"><%= comment.body %></div>
 
-        <% if(currentUser && comment.author.equals(currentUser)) {%>
-        <div class="card-footer">
-          <form
-            action="/p/<%= foundPage._id %>/comments/<%= comment._id %>?_method=DELETE"
-            method="POST"
-          >
-            <button class="btn btn-danger">Delete</button>
-          </form>
+        <div class="card-footer d-flex justify-content-between">
+          <div>
+            <form
+              id="likeComment"
+              action="/p/<%= foundPage._id  %>/comments/<%= comment._id %>"
+              method="POST"
+            >
+              <span class="mr-auto">
+                <% if (currentUser && comment.likes.includes(currentUser._id)) {
+                %>
+                <button class="btn">
+                  <i class="fa-solid fa-lg fa-heart" style="color: #e01b24"></i>
+                </button>
+                <% }else { %>
+                <button class="btn">
+                  <i
+                    class="fa-regular fa-lg fa-heart"
+                    style="color: #e01b24"
+                  ></i>
+                </button>
+                <% } %> <%= comment.likes.length %></span
+              >
+            </form>
+          </div>
+          <% if(currentUser && comment.author.equals(currentUser)) {%>
+          <div class="d-flex justify-content-end">
+            <a
+              href="/p/<%= foundPage._id %>/comments/<%= comment._id %>/edit"
+              class="mx-1 btn btn-warning"
+              >Edit</a
+            >
+            <form
+              action="/p/<%= foundPage._id %>/comments/<%= comment._id %>?_method=DELETE"
+              method="POST"
+            >
+              <button class="btn btn-danger">Delete</button>
+            </form>
+          </div>
 
-          <a
-            href="/p/<%= foundPage._id %>/comments/<%= comment._id %>/edit"
-            class="btn btn-warning"
-            >Edit</a
-          >
+          <% } %>
         </div>
-        <% } %>
       </div>
 
       <% } %>
