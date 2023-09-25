@@ -1,46 +1,47 @@
 <% layout("layouts/boilerplate") %>
+<div class="row d-flex justify-content-center">
+  <div class="col-lg-6 mt-5">
+    <form
+      class="needs-validation"
+      action="/p"
+      method="POST"
+      novalidate
+      enctype="multipart/form-data"
+    >
+      <div class="form-group">
+        <label for="exampleFormControlInput1">Title</label>
+        <input
+          type="text"
+          class="form-control"
+          id="exampleFormControlInput1"
+          placeholder="your page title"
+          name="page[title]"
+          required
+        />
+      </div>
+      <div class="form-group">
+        <label for="exampleFormControlTextarea1">Your post body</label>
+        <textarea
+          class="form-control"
+          id="exampleFormControlTextarea1"
+          rows="3"
+          name="page[body]"
+          placeholder="Write here..."
+          required
+        ></textarea>
+      </div>
+      <div class="form-group mt-3">
+        <label for="exampleFormControlInput2">Your post Image</label>
+        <input
+          type="file"
+          class="form-control"
+          id="exampleFormControlInput2"
+          name="page[img]"
+        />
+      </div>
 
-<div class="col-6 offset-3 mt-5">
-  <form
-    class="needs-validation"
-    action="/p"
-    method="POST"
-    novalidate
-    enctype="multipart/form-data"
-  >
-    <div class="form-group">
-      <label for="exampleFormControlInput1">Title</label>
-      <input
-        type="text"
-        class="form-control"
-        id="exampleFormControlInput1"
-        placeholder="your page title"
-        name="page[title]"
-        required
-      />
-    </div>
-    <div class="form-group">
-      <label for="exampleFormControlTextarea1">Your post body</label>
-      <textarea
-        class="form-control"
-        id="exampleFormControlTextarea1"
-        rows="3"
-        name="page[body]"
-        placeholder="Write here..."
-        required
-      ></textarea>
-    </div>
-    <div class="form-group mt-3">
-      <label for="exampleFormControlInput2">Your post Image</label>
-      <input
-        type="file"
-        class="form-control"
-        id="exampleFormControlInput2"
-        name="page[img]"
-      />
-    </div>
-
-    <a class="mt-1 btn btn-secondary" type="button" href="/p">Cancel</a>
-    <button class="mx-1 mt-1 btn btn-success">Submit</button>
-  </form>
+      <a class="mt-1 btn btn-secondary" type="button" href="/p">Cancel</a>
+      <button class="mx-1 mt-1 btn btn-success">Submit</button>
+    </form>
+  </div>
 </div>

@@ -17,6 +17,7 @@ const passport = require("passport");
 const LocalStrategy = require("passport-local");
 const User = require("./models/users.js");
 const userRoutes = require("./routes/users.js");
+const sortRoutes = require("./routes/sort.js");
 
 const mongoSanitize = require("express-mongo-sanitize");
 
@@ -74,6 +75,7 @@ app.use((req, res, next) => {
 
 app.use("/", userRoutes);
 app.use("/p", pageRoutes);
+app.use("/p/popular", sortRoutes);
 app.use("/p/:id/comments", commentRoutes);
 
 app.get("/", (req, res) => {

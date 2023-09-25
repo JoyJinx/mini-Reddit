@@ -28,9 +28,10 @@ module.exports.postPage = async (req, res) => {
     newPage.img.path = result.secure_url;
     newPage.img.filename = result.public_id;
   }
+  newPage.date = Date.now();
   newPage.author = req.user._id;
   await newPage.save();
-  req.flash("success", "Created new post!");
+  req.flash("success", "Created new Subpage!");
   res.redirect("/p");
 };
 
@@ -42,7 +43,7 @@ module.exports.postLike = async (req, res) => {
   });
   if (foundUserLike) {
     foundPage.likes.pull(req.user._id);
-    req.flash("success", "removed like!!");
+    req.flash("success", "like removed!!");
   } else {
     foundPage.likes.unshift(req.user._id);
     req.flash("success", "liked!");
@@ -94,6 +95,6 @@ module.exports.pageDelete = async (req, res) => {
   if (foundPage.img.filename) {
     await cloudinary.uploader.destroy(foundPage.img.filename);
   }
-  req.flash("success", "Post deleted successfully!");
+  req.flash("success", "Subpage deleted successfully!");
   res.redirect("/p");
 };

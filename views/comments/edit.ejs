@@ -1,47 +1,48 @@
 <% layout('layouts/boilerplate') %>
-
-<div class="col-6 offset-3 mt-5">
-  <div class="card mb-5">
-    <form
-      class="needs-validation"
-      action="/p/<%= id %>/comments/<%=foundComment._id%>?_method=PATCH"
-      method="POST"
-      novalidate
-    >
-      <div class="card-body">
-        <div class="form-group">
-          <label for="exampleFormControlTextarea1">Edit comment</label>
-          <textarea
-            class="form-control"
-            id="exampleFormControlTextarea1"
-            rows="3"
-            name="comment[body]"
-            required
-          >
+<div class="row d-flex justify-content-center">
+  <div class="col-lg-6 mt-5">
+    <div class="card mb-5">
+      <form
+        class="needs-validation"
+        action="/p/<%= id %>/comments/<%=foundComment._id%>?_method=PATCH"
+        method="POST"
+        novalidate
+      >
+        <div class="card-body">
+          <div class="form-group">
+            <label for="exampleFormControlTextarea1">Edit comment</label>
+            <textarea
+              class="form-control"
+              id="exampleFormControlTextarea1"
+              rows="3"
+              name="comment[body]"
+              required
+            >
   <%= foundComment.body %></textarea
-          >
-        </div>
-      </div>
-
-      <div class="card-footer d-flex justify-content-between">
-        <span class="text-muted"
-          ><i class="fa-regular fa-heart fa-lg" style="color: #e01b24"></i> <%=
-          foundComment.likes.length %></span
-        >
-        <div class="d-flex justify-content-end">
-          <div>
-            <a
-              class="btn btn-sm btn-secondary"
-              type="button"
-              href="/p/<%= id %>"
-              >Cancel</a
             >
           </div>
-          <div>
-            <button class="mx-1 btn btn-sm btn-success">Save</button>
+        </div>
+
+        <div class="card-footer d-flex justify-content-between">
+          <span class="text-muted"
+            ><i class="fa-regular fa-heart fa-lg" style="color: #e01b24"></i>
+            <%= foundComment.likes.length %></span
+          >
+          <div class="d-flex justify-content-end">
+            <div>
+              <a
+                class="btn btn-sm btn-secondary"
+                type="button"
+                href="/p/<%= id %>"
+                >Cancel</a
+              >
+            </div>
+            <div>
+              <button class="mx-1 btn btn-sm btn-success">Save</button>
+            </div>
           </div>
         </div>
-      </div>
-    </form>
+      </form>
+    </div>
   </div>
 </div>

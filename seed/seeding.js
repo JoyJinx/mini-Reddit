@@ -20,6 +20,7 @@ async function seedData() {
       },
       comments: [],
       likes: [],
+      date: Date.now(),
     },
     {
       author: "650bfd6283e6080b8c4afd9d",
@@ -31,6 +32,7 @@ async function seedData() {
       },
       comments: [],
       likes: [],
+      date: Date.now(),
     },
     {
       author: "650bfd6283e6080b8c4afd9d",
@@ -42,6 +44,7 @@ async function seedData() {
       },
       comments: [],
       likes: [],
+      date: Date.now(),
     },
     {
       author: "650bfd6283e6080b8c4afd9d",
@@ -53,6 +56,7 @@ async function seedData() {
       },
       comments: [],
       likes: [],
+      date: Date.now(),
     },
     {
       author: "650bfd6283e6080b8c4afd9d",
@@ -64,6 +68,7 @@ async function seedData() {
       },
       comments: [],
       likes: [],
+      date: Date.now(),
     },
   ]);
 }

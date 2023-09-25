@@ -1,48 +1,54 @@
 <% layout('layouts/boilerplate') %>
-
-<div class="col-6 offset-3 mt-5">
-  <h1>Registration</h1>
-  <div class="card">
-    <form class="needs-validation" action="/register" method="POST" novalidate>
-      <div class="card-body">
-        <div class="form-group">
-          <label for="exampleFormControlInput1">Username</label>
-          <input
-            type="text"
-            class="form-control"
-            id="exampleFormControlInput1"
-            placeholder="Username"
-            name="username"
-            required
-          />
+<div class="row d-flex justify-content-center">
+  <div class="col-lg-6 mt-5">
+    <h1>Registration</h1>
+    <div class="card">
+      <form
+        class="needs-validation"
+        action="/register"
+        method="POST"
+        novalidate
+      >
+        <div class="card-body">
+          <div class="form-group">
+            <label for="exampleFormControlInput1">Username</label>
+            <input
+              type="text"
+              class="form-control"
+              id="exampleFormControlInput1"
+              placeholder="Username"
+              name="username"
+              required
+            />
+          </div>
+          <div class="form-group mt-3">
+            <label for="exampleFormControlInput2">Email</label>
+            <input
+              type="email"
+              class="form-control"
+              id="exampleFormControlInput2"
+              placeholder="johndoe@mars.com"
+              name="email"
+              required
+            />
+          </div>
+          <div class="form-group mt-3">
+            <label for="exampleFormControlInput3">Password</label>
+            <input
+              type="password"
+              class="form-control"
+              id="exampleFormControlInput3"
+              name="password"
+              placeholder="Password"
+              required
+            />
+          </div>
         </div>
-        <div class="form-group mt-3">
-          <label for="exampleFormControlInput2">Email</label>
-          <input
-            type="email"
-            class="form-control"
-            id="exampleFormControlInput2"
-            placeholder="johndoe@mars.com"
-            name="email"
-            required
-          />
+        <div class="card-footer">
+          <a class="mt-1 btn btn-secondary" type="button" href="/p">Cancel</a>
+          <button class="mt-1 btn btn-success">Sign Up</button>
         </div>
-        <div class="form-group mt-3">
-          <label for="exampleFormControlInput3">Password</label>
-          <input
-            type="password"
-            class="form-control"
-            id="exampleFormControlInput3"
-            name="password"
-            placeholder="Password"
-            required
-          />
-        </div>
-      </div>
-      <div class="card-footer">
-        <a class="mt-1 btn btn-secondary" type="button" href="/p">Cancel</a>
-        <button class="mt-1 btn btn-success">Sign Up</button>
-      </div>
-    </form>
+      </form>
+    </div>
   </div>
 </div>

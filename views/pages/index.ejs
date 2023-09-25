@@ -1,30 +1,59 @@
 <% layout('layouts/boilerplate') %>
-<div class="row">
-  <div class="col-6 offset-3 mt-3">
-    <div class="d-flex justify-content-between">
-      <h1 class="mt-5">All Posts</h1>
+<div class="row d-flex justify-content-center">
+  <div class="col-lg-6 mt-3">
+    <div
+      class="col-lg-md-4 d-flex justify-content-between align-items-center mt-5 mb-2"
+    >
+      <div class="d-flex justify-content-center align-items-center">
+        <h1 class="mx-3">All Posts</h1>
+
+        <div class="dropdown">
+          <button
+            class="btn btn-outline-primary dropdown-toggle"
+            type="button"
+            data-bs-toggle="dropdown"
+            aria-expanded="false"
+          >
+            Sort by:
+          </button>
+          <ul class="dropdown-menu">
+            <li><a class="dropdown-item" href="/p/popular/new">New</a></li>
+            <li><a class="dropdown-item" href="/p/popular/best">Best</a></li>
+          </ul>
+        </div>
+      </div>
       <a
-        style="height: 40%"
-        class="btn btn-primary align-self-end mb-2"
+        style="height: 40%; max-height: fit-content"
+        class="btn btn-primary align-self-middle"
         type="button"
         href="/p/new"
-        >Create New Post</a
       >
+        <i class="fa-solid fa-file-pen fa-lg mx-1" style="color: #ff7800"></i
+        >Create
+      </a>
     </div>
     <% for(let page of pages) { %>
     <div class="card mb-5">
       <div class="card-header">
         <div class="card-title"><%= page.title %></div>
-        <span>-By <%= page.author.username %></span>
+        <div class="d-flex justify-content-between align-items-center">
+          <span>-By <%= page.author.username %></span>
+          <span class="text-muted"
+            ><%= Math.floor((Date.now() - page.date)/60000) %> mins ago.</span
+          >
+        </div>
       </div>
       <div class="col-4 offset-4">
         <img class="img-fluid my-2" src="<%= page.img.path %>" />
       </div>
       <div class="card-body"><%= page.body %></div>
       <div class="d-flex card-footer justify-content-between">
-        <span
-          ><i class="fa-regular fa-lg fa-heart" style="color: #e01b24"></i> <%=
-          page.likes.length %></span
+        <span class="d-flex justify-content-center align-items-center"
+          ><% if (currentUser && page.likes.includes(currentUser._id)) { %>
+          <i class="fa-solid fa-lg fa-heart" style="color: #e01b24"></i>
+          <% }else { %>
+          <i class="fa-regular fa-lg fa-heart px-1" style="color: #e01b24"></i>
+          <% } %> <%= page.likes.length %></span
         >
         <span
           ><a

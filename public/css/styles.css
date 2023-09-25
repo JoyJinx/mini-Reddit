@@ -4,6 +4,10 @@
   box-sizing: border-box;
 }
 
+nav {
+  background-color: #0e1b29;
+}
+
 .text-small {
   font-size: 0.9rem;
 }
@@ -17,24 +21,28 @@ a {
 a:hover,
 a:focus {
   text-decoration: none;
+  color: #f37d15;
 }
 
 .form-control {
-  background: #f1f3f5;
+  background: rgb(208, 208, 216);
   border-color: #545454;
 }
 
 .form-control:focus {
-  background: ghostwhite;
+  background: rgb(206, 206, 216);
 }
 
 footer {
   margin-top: auto;
-  background: #212529;
+  background: #0e1b29;
 }
 
 body,
 html {
   min-height: 100vh;
   height: 100%;
+  min-width: 100vw;
+  width: 100%;
+  overflow-x: hidden;
 }

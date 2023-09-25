@@ -1,7 +1,7 @@
 <% layout("layouts/boilerplate") %>
 
-<div class="row">
-  <div class="col-6 mt-5">
+<div class="row justify-content-center">
+  <div class="col-lg-6 mt-5">
     <div class="card mb-5">
       <div class="card-header">
         <div class="card-title"><%= foundPage.title %></div>
@@ -17,14 +17,16 @@
           action="/p/<%= foundPage._id  %>/like"
           method="POST"
         >
-          <span class="mr-auto">
+          <span
+            class="mr-auto d-flex justify-content-center align-items-center"
+          >
             <% if (currentUser && foundPage.likes.includes(currentUser._id)) {
             %>
-            <button class="btn">
+            <button class="btn px-1">
               <i class="fa-solid fa-lg fa-heart" style="color: #e01b24"></i>
             </button>
             <% }else { %>
-            <button class="btn">
+            <button class="btn px-1">
               <i class="fa-regular fa-lg fa-heart" style="color: #e01b24"></i>
             </button>
             <% } %> <%= foundPage.likes.length %></span
@@ -52,7 +54,7 @@
     </div>
   </div>
 
-  <div class="col-6 mt-4">
+  <div class="col-lg-6 mt-4">
     <form
       class="needs-validation"
       action="/p/<%= foundPage._id %>/comments"
@@ -90,14 +92,16 @@
               action="/p/<%= foundPage._id  %>/comments/<%= comment._id %>"
               method="POST"
             >
-              <span class="mr-auto">
+              <span
+                class="mr-auto d-flex justify-content-center align-items-center"
+              >
                 <% if (currentUser && comment.likes.includes(currentUser._id)) {
                 %>
-                <button class="btn">
+                <button class="btn px-1">
                   <i class="fa-solid fa-lg fa-heart" style="color: #e01b24"></i>
                 </button>
                 <% }else { %>
-                <button class="btn">
+                <button class="btn px-1">
                   <i
                     class="fa-regular fa-lg fa-heart"
                     style="color: #e01b24"

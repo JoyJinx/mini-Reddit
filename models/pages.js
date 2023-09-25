@@ -9,6 +9,7 @@ const pageSchema = new mongoose.Schema({
   title: String,
   body: String,
   img: { path: String, filename: String },
+  date: Number,
   comments: [{ type: mongoose.Schema.Types.ObjectId, ref: "Comment" }],
   likes: [{ type: mongoose.Schema.Types.ObjectId, ref: "User" }],
 });
