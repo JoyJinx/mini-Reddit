@@ -18,6 +18,8 @@ const LocalStrategy = require("passport-local");
 const User = require("./models/users.js");
 const userRoutes = require("./routes/users.js");
 
+const mongoSanitize = require("express-mongo-sanitize");
+
 mongoose.connect("mongodb://localhost:27017/miniR");
 
 const db = mongoose.connection;
@@ -34,6 +36,7 @@ app.set("view engine", "ejs");
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(methodOverride("_method"));
+app.use(mongoSanitize());
 
 app.use("/public", express.static(path.join(__dirname, "public")));
 
@@ -44,6 +47,7 @@ const sessionConfig = {
   cookie: {
     httpOnly: true,
     expires: Date.now() + 900000,
+    // secure: true,
     maxAge: 900000,
     sameSite: "Lax",
   },
