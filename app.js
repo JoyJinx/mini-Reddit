@@ -67,8 +67,8 @@ const sessionConfig = {
   cookie: {
     httpOnly: true,
     expires: Date.now() + 1800000,
-    secure: true,
-    maxAge: 900000,
+    // secure: true,
+    maxAge: 1800000,
     sameSite: "Lax",
   },
 };
@@ -99,6 +99,9 @@ app.use("/p/:id/comments", commentRoutes);
 
 app.get("/", (req, res) => {
   res.render("pages/home.ejs");
+});
+app.get("/about", (req, res) => {
+  res.render("pages/about.ejs");
 });
 
 app.all("*", (req, res, next) => {
