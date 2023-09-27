@@ -24,7 +24,7 @@ const MongoStore = require("connect-mongo");
 
 const mongoSanitize = require("express-mongo-sanitize");
 
-const dbUrl = "mongodb://localhost:27017/miniR";
+const dbUrl = process.env.DB_URI || "mongodb://localhost:27017/miniR";
 
 mongoose.connect(dbUrl);
 
@@ -47,9 +47,11 @@ app.use(helmet({ contentSecurityPolicy: false }));
 
 app.use("/public", express.static(path.join(__dirname, "public")));
 
+const secret = process.env.SECRET || "thereisnotomorrow";
+
 const store = new MongoStore({
   mongoUrl: dbUrl,
-  secret: "thereisnotomorrow",
+  secret: secret,
   touchAfter: 24 * 60 * 60,
 });
 
@@ -59,13 +61,13 @@ store.on("error", function (e) {
 
 const sessionConfig = {
   store: store,
-  secret: "thereisnotomorrow",
+  secret: secret,
   resave: false,
   saveUninitialized: true,
   cookie: {
     httpOnly: true,
     expires: Date.now() + 1800000,
-    // secure: true,
+    secure: true,
     maxAge: 900000,
     sameSite: "Lax",
   },
