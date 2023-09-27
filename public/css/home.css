@@ -10,6 +10,9 @@ body {
 .cover-container {
   max-width: 60vw;
 }
+.card-header {
+  background-color: #7c7c7c;
+}
 
 .nav-link {
   padding: 0.25rem 0;

@@ -18,10 +18,15 @@ const LocalStrategy = require("passport-local");
 const User = require("./models/users.js");
 const userRoutes = require("./routes/users.js");
 const sortRoutes = require("./routes/sort.js");
+const helmet = require("helmet");
+
+const MongoStore = require("connect-mongo");
 
 const mongoSanitize = require("express-mongo-sanitize");
 
-mongoose.connect("mongodb://localhost:27017/miniR");
+const dbUrl = "mongodb://localhost:27017/miniR";
+
+mongoose.connect(dbUrl);
 
 const db = mongoose.connection;
 db.on("error", console.error.bind(console, "connection error: "));
@@ -38,16 +43,28 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(methodOverride("_method"));
 app.use(mongoSanitize());
+app.use(helmet({ contentSecurityPolicy: false }));
 
 app.use("/public", express.static(path.join(__dirname, "public")));
 
+const store = new MongoStore({
+  mongoUrl: dbUrl,
+  secret: "thereisnotomorrow",
+  touchAfter: 24 * 60 * 60,
+});
+
+store.on("error", function (e) {
+  console.log("Session Store Error", e);
+});
+
 const sessionConfig = {
+  store: store,
   secret: "thereisnotomorrow",
   resave: false,
-  saveUninitialized: false,
+  saveUninitialized: true,
   cookie: {
     httpOnly: true,
-    expires: Date.now() + 900000,
+    expires: Date.now() + 1800000,
     // secure: true,
     maxAge: 900000,
     sameSite: "Lax",

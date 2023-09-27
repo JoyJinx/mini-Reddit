@@ -69,8 +69,16 @@
         </div>
         <div class="card-footer d-flex justify-content-between">
           <span class="text-muted"
-            ><i class="fa-regular fa-heart fa-lg" style="color: #e01b24"></i>
-            <%= foundPage.likes.length %></span
+            ><% if (currentUser && foundPage.likes.includes(currentUser._id)) {
+            %>
+            <button class="btn px-1">
+              <i class="fa-solid fa-lg fa-heart" style="color: #e01b24"></i>
+            </button>
+            <% }else { %>
+            <button class="btn px-1">
+              <i class="fa-regular fa-lg fa-heart" style="color: #e01b24"></i>
+            </button>
+            <% } %> <%= foundPage.likes.length %></span
           >
           <div class="d-flex justify-content-end">
             <div>
