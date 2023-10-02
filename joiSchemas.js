@@ -25,8 +25,14 @@ const Joi = BaseJoi.extend(extension);
 module.exports.pageSchema = Joi.object({
   page: Joi.object({
     author: Joi.string(),
-    title: Joi.string().required().escapeHTML(),
-    body: Joi.string().required().escapeHTML(),
+    title: Joi.string()
+      .required()
+      .pattern(/(ْ+|ٌ+|ٍ+|ً+|ُ+|ِ+|َ+|ّ+|ٓ+|ٰ+|ٔ+)/, { invert: true })
+      .escapeHTML(),
+    body: Joi.string()
+      .required()
+      .pattern(/(ْ+|ٌ+|ٍ+|ً+|ُ+|ِ+|َ+|ّ+|ٓ+|ٰ+|ٔ+)/, { invert: true })
+      .escapeHTML(),
     img: Joi.object().empty(""),
     comments: Joi.array(),
   }).required(),
@@ -36,6 +42,9 @@ module.exports.pageSchema = Joi.object({
 module.exports.commentSchema = Joi.object({
   comment: Joi.object({
     author: Joi.string(),
-    body: Joi.string().required().escapeHTML(),
+    body: Joi.string()
+      .required()
+      .pattern(/(ْ+|ٌ+|ٍ+|ً+|ُ+|ِ+|َ+|ّ+|ٓ+|ٰ+|ٔ+)/, { invert: true })
+      .escapeHTML(),
   }).required(),
 });
