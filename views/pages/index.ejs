@@ -38,9 +38,7 @@
         <div class="card-title"><%= page.title %></div>
         <div class="d-flex justify-content-between align-items-center">
           <span>-By <%= page.author.username %></span>
-          <span class="text-muted"
-            ><%= Math.floor((Date.now() - page.date)/60000) %> mins ago.</span
-          >
+          <span class="text-muted"> <%= page.humanDate %></span>
         </div>
       </div>
       <div class="col-4 offset-4">
@@ -55,14 +53,23 @@
           <i class="fa-regular fa-lg fa-heart px-1" style="color: #e01b24"></i>
           <% } %> <%= page.likes.length %></span
         >
-        <span
-          ><a
-            class="btn btn-sm btn-info"
-            type="button"
-            href="/p/<%= page._id %>"
-            >Details</a
-          ></span
-        >
+        <div class="d-flex justify-content-center align-items-center">
+          <span
+            ><% if (currentUser && page.comments.includes(currentUser._id)) { %>
+            <i class="fa-solid fa-comment fa-lg"></i>
+            <% }else { %>
+            <i class="fa-regular fa-comment fa-lg"></i>
+            <% } %> <%= page.comments.length %></span
+          >
+          <span class="mx-2">
+            <a
+              class="btn btn-sm btn-info"
+              type="button"
+              href="/p/<%= page._id %>"
+              >Details</a
+            ></span
+          >
+        </div>
       </div>
     </div>
 
