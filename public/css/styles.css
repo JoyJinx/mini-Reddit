@@ -4,6 +4,16 @@
   box-sizing: border-box;
 }
 
+.card-body {
+  background-color: ghostwhite;
+}
+.card-header {
+  background-color: #d3d3d8;
+}
+.card-footer {
+  background-color: #d3d3d8;
+}
+
 nav {
   background-color: #0e1b29;
 }
@@ -13,20 +23,30 @@ nav {
 }
 
 a {
-  color: ghostwhite;
+  color: rgb(27, 27, 32);
   text-decoration: none;
   transition: all 0.3s;
+}
+
+.footlink {
+  color: #d3d3d8;
+  text-decoration: none;
+  transition: all 0.3s;
+}
+
+.copyr {
+  color: #aaaaaa;
 }
 
 a:hover,
 a:focus {
   text-decoration: none;
-  color: #f37d15;
+  color: #1474f1;
 }
 
 .form-control {
   background: rgb(208, 208, 216);
-  border-color: #545454;
+  border-color: #666666;
 }
 
 .form-control:focus {
@@ -45,4 +65,10 @@ html {
   min-width: 100vw;
   width: 100%;
   overflow-x: hidden;
+}
+
+body {
+  background: linear-gradient(rgba(25, 12, 58, 0.5), rgba(189, 90, 9, 0.5));
+  background-size: cover;
+  background-position: center;
 }

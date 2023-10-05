@@ -1,0 +1,79 @@
+<%- layout('layouts/boilerplate') %>
+
+<div class="row d-flex justify-content-center">
+  <div
+    class="col-lg-6 d-flex flex-column align-items-center justify-content-center order-2"
+  >
+    <div style="width: 80%" class="card">
+      <div class="card-header">
+        <h3>Subpages</h3>
+      </div>
+      <div class="card-body">
+        <ul>
+          <% for(let page of thisUser.pages) {%>
+          <li class="mb-2">
+            <a href="/p/<%= page._id  %>"><%= page.title %></a>
+          </li>
+          <% } %>
+        </ul>
+      </div>
+    </div>
+    <div style="width: 80%" class="card mt-2">
+      <div class="card-header">
+        <h3>Comments</h3>
+      </div>
+      <div class="card-body">
+        <ul>
+          <% for(let comment of thisUser.comments) {%>
+          <li class="mb-2">
+            <a href="/p/<%= comment.page  %>"><%= comment.body %></a>
+          </li>
+          <% } %>
+        </ul>
+      </div>
+    </div>
+    <div style="width: 80%" class="card mt-2">
+      <div class="card-header">
+        <h3>Liked</h3>
+      </div>
+      <div class="card-body">
+        <ul>
+          <% for(let like of thisUser.likes) {%>
+          <li class="mb-2">
+            <a href="/p/<%= like._id  %>"><%= like.title || like.body %></a>
+          </li>
+          <% } %>
+        </ul>
+      </div>
+    </div>
+  </div>
+  <div class="col-lg-6 d-flex flex-column order-1">
+    <div class="card mb-5">
+      <div
+        class="card-header d-flex justify-content-between align-items-center"
+      >
+        <h5><%= thisUser.username %></h5>
+        <img src="<%= thisUser.optional.realPath %>" alt="profile" />
+      </div>
+
+      <div class="card-body pb-1">
+        <span>member since: <span><%= thisUser.createdAt %></span>></span>
+        <hr />
+        <p>Bio: <%= thisUser.optional.bio %></p>
+      </div>
+
+      <div class="card-footer">
+        <p class="mt-2">
+          Posts made: <span><%= thisUser.pages.length %></span>
+        </p>
+
+        <p class="mt-2">
+          Comments made: <span><%= thisUser.comments.length %></span>
+        </p>
+
+        <p class="mt-2">Liked: <span><%= thisUser.likes.length %></span></p>
+      </div>
+      <a class="btn btn-info text-white" href="/edit">Edit Profile</a>
+    </div>
+  </div>
+</div>

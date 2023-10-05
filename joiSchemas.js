@@ -48,3 +48,14 @@ module.exports.commentSchema = Joi.object({
       .escapeHTML(),
   }).required(),
 });
+
+module.exports.registerSchema = Joi.object({
+  username: Joi.string().alphanum().min(3).max(30).required(),
+  email: Joi.string().email().required(),
+  password: Joi.string().required(),
+  password2: Joi.any()
+    .equal(Joi.ref("password"))
+    .required()
+    .label("Confirm password")
+    .messages({ "any.only": "{{#label}} does not match" }),
+}).required();

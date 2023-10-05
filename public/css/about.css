@@ -1,6 +1,9 @@
 body {
   height: 100vh;
-  background: linear-gradient(rgba(13, 189, 151, 0.5), rgba(207, 33, 164, 0.5));
+  background-image: linear-gradient(
+    rgba(10, 216, 96, 0.5),
+    rgba(58, 14, 138, 0.5)
+  );
   background-size: cover;
   background-position: center;
   text-shadow: 0 0.05rem 0.1rem rgba(0, 0, 0, 0.5);

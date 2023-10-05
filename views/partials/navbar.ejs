@@ -32,20 +32,27 @@
         <a class="nav-link" href="/login">Login</a>
         <a class="nav-link" href="/register">Register</a>
         <% } else {%>
-        <a class="nav-link" href=""
-          ><i class="fa-solid fa-lg fa-user mr-1" style="color: #f37d15"></i>
-          <%= currentUser.username %></a
+        <a class="nav-link py-0 d-flex align-items-center" href="/profile">
+          <% if(currentUser.optional.realPath) {%>
+          <img
+            class="mx-1"
+            src="<%= currentUser.optional.realPath %>"
+            alt="profile"
+          />
+          <% } else {%>
+          <i class="fa-solid fa-user fa-xl mx-2" style="color: #f3a32b"></i>
+          <% } %> <%= currentUser.username %></a
         >
 
         <a class="nav-link mx-1" href="/logout">Logout</a>
         <% } %>
       </div>
     </div>
-    <button id="darkSwitch" class="btn btn-outline-secondary order-1 mx-1">
+    <!-- <button id="darkSwitch" class="btn btn-outline-secondary order-1 mx-1">
       <i
         class="fa-solid fa-circle-half-stroke fa-xl"
         style="color: #f37d15"
       ></i>
-    </button>
+    </button> -->
   </div>
 </nav>

@@ -3,10 +3,13 @@ const Page = require("../models/pages");
 const User = require("../models/users");
 
 module.exports.postComment = async (req, res) => {
-  const subpage = await Page.findById(req.params.id);
+  const { id } = req.params;
+  const subpage = await Page.findById(id);
   const comment = new Comment(req.body.comment);
-  const thisUser = User.findById(req.user._id);
+  const thisUser = await User.findById(req.user._id);
   comment.author = req.user._id;
+  comment.date = Date.now();
+  comment.page = id;
   subpage.comments.unshift(comment);
   thisUser.comments.unshift(comment);
 

@@ -1,7 +1,7 @@
 const AppError = require("./utils/AppError");
 const Page = require("./models/pages");
 const Comment = require("./models/comments");
-const { pageSchema, commentSchema } = require("./joiSchemas");
+const { pageSchema, commentSchema, registerSchema } = require("./joiSchemas");
 
 module.exports.isLoggedIn = (req, res, next) => {
   if (!req.isAuthenticated()) {
@@ -50,4 +50,14 @@ module.exports.isCommentAuthorized = async (req, res, next) => {
     return res.redirect(`/p/${id}`);
   }
   next();
+};
+
+module.exports.validateRegister = (req, res, next) => {
+  const { error } = registerSchema.validate(req.body);
+  if (error) {
+    const msg = error.details.map((x) => x.message).join(",");
+    throw new AppError(400, msg);
+  } else {
+    next();
+  }
 };
