@@ -1,13 +1,21 @@
 <% layout("layouts/boilerplate") %>
 
 <div class="row justify-content-center">
-  <div class="col-lg-6 mt-5">
+  <div class="col-lg-6 mt-4">
     <div class="card mb-5">
       <div class="card-header">
-        <div class="card-title"><%= foundPage.title %></div>
+        <div class="card-title mt-1"><%= foundPage.title %></div>
+        <hr class="my-1" />
         <div class="d-flex justify-content-between align-items-center">
-          <span>-By <%= foundPage.author.username %></span>
-          <span class="text-muted"> <%= foundPage.humanDate %> </span>
+          <span class="text-small"
+            >-By <img src="<%= foundPage.author.optional.realPath %>" alt="" />
+            <a class="tag3d" href="/<%= foundPage.author.username %>/view"
+              ><%= foundPage.author.username %></a
+            ></span
+          >
+          <span class="text-muted text-small">
+            <%= foundPage.humanDate %>
+          </span>
         </div>
       </div>
       <% if(foundPage.img.path) {%>
@@ -27,11 +35,11 @@
           >
             <% if (currentUser && foundPage.likes.includes(currentUser._id)) {
             %>
-            <button class="btn px-1">
+            <button class="tag3d btn px-1">
               <i class="fa-solid fa-lg fa-heart" style="color: #e01b24"></i>
             </button>
             <% }else { %>
-            <button class="btn px-1">
+            <button class="tag3d btn px-1">
               <i class="fa-regular fa-lg fa-heart" style="color: #e01b24"></i>
             </button>
             <% } %> <%= foundPage.likes.length %></span
@@ -39,19 +47,21 @@
         </form>
         <div class="d-flex align-items-center">
           <div>
-            <a class="btn btn-sm btn-secondary" type="button" href="/p">Back</a>
+            <a class="btn3d btn btn-sm btn-secondary" type="button" href="/p"
+              >Back</a
+            >
           </div>
           <% if(currentUser && foundPage.author.equals(currentUser)) {%>
           <div>
             <a
-              class="mx-1 btn btn-sm btn-info"
+              class="mx-1 btn btn-sm btn-info btn3d"
               type="button"
               href="/p/<%= foundPage._id %>/edit"
               >Edit</a
             >
           </div>
           <form action="/p/<%= foundPage._id %>?_method=DELETE" method="POST">
-            <button class="btn btn-sm btn-danger">Delete</button>
+            <button class="btn3d btn btn-sm btn-danger">Delete</button>
           </form>
           <% } %>
         </div>
@@ -84,18 +94,23 @@
         </div>
 
         <div class="card-footer">
-          <button class="btn btn-sm btn-success">Submit</button>
+          <button class="btn3d btn btn-sm btn-success">Submit</button>
         </div>
       </div>
     </form>
     <div class="mt-3">
       <% for (let comment of foundPage.comments) {%>
-      <div class="card">
+      <div class="card mb-2">
         <div
           class="card-header d-flex justify-content-between align-items-center"
         >
-          <span>-By <%= comment.author.username %></span>
-          <span><%= comment.humanDate %></span>
+          <span class="text-small"
+            >-By <img src="<%= comment.author.optional.realPath %>" alt="" />
+            <a class="tag3d" href="/<%= comment.author.username %>/view"
+              ><%= comment.author.username %></a
+            ></span
+          >
+          <span class="text-muted text-small"><%= comment.humanDate %></span>
         </div>
         <div class="card-body"><%= comment.body %></div>
 
@@ -112,12 +127,15 @@
                 <% if (currentUser && comment.likes.includes(currentUser._id)) {
                 %>
                 <button class="btn px-1">
-                  <i class="fa-solid fa-lg fa-heart" style="color: #e01b24"></i>
+                  <i
+                    class="tag3d fa-solid fa-lg fa-heart"
+                    style="color: #e01b24"
+                  ></i>
                 </button>
                 <% }else { %>
                 <button class="btn px-1">
                   <i
-                    class="fa-regular fa-lg fa-heart"
+                    class="tag3d fa-regular fa-lg fa-heart"
                     style="color: #e01b24"
                   ></i>
                 </button>
@@ -129,14 +147,14 @@
           <div class="d-flex justify-content-end">
             <a
               href="/p/<%= foundPage._id %>/comments/<%= comment._id %>/edit"
-              class="mx-1 btn btn-warning"
+              class="mx-1 btn btn-warning btn3d"
               >Edit</a
             >
             <form
               action="/p/<%= foundPage._id %>/comments/<%= comment._id %>?_method=DELETE"
               method="POST"
             >
-              <button class="btn btn-danger">Delete</button>
+              <button class="btn btn-danger btn3d">Delete</button>
             </form>
           </div>
 

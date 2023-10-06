@@ -17,6 +17,7 @@ router.patch(
   upload.single("img"),
   catchAsync(users.patchEdit)
 );
+
 router.post(
   "/profile",
   isLoggedIn,
@@ -33,5 +34,6 @@ router.post(
   catchAsync(users.postLogin)
 );
 router.get("/logout", users.getLogOut);
+router.get("/:username/view", catchAsync(users.getOverview));
 
 module.exports = router;

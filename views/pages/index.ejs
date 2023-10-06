@@ -14,7 +14,7 @@
             data-bs-toggle="dropdown"
             aria-expanded="false"
           >
-            Sort by:
+            Sort by
           </button>
           <ul class="dropdown-menu">
             <li><a class="dropdown-item" href="/p/popular/new">New</a></li>
@@ -24,22 +24,28 @@
       </div>
       <a
         style="height: 40%; max-height: fit-content"
-        class="btn btn-primary align-self-middle"
+        class="btn3d mx-3 btn btn-primary align-self-middle"
         type="button"
         href="/p/new"
       >
-        <i class="fa-solid fa-file-pen fa-lg mx-1" style="color: #ff7800"></i
+        <i class="fa-solid fa-file-pen fa-lg me-1" style="color: #ff7800"></i
         >Create
       </a>
     </div>
     <% for(let page of pages) { %>
-    <div class="card mb-5">
+    <div class="tile card mb-5">
       <div class="card-header">
-        <div class="card-title"><%= page.title %></div>
+        <div class="card-title mt-1"><%= page.title %></div>
         <hr class="my-1" />
         <div class="d-flex justify-content-between align-items-center">
-          <span>-By <%= page.author.username %></span>
-          <span class="text-muted"> <%= page.humanDate %></span>
+          <span class="text-small"
+            >-By
+            <img src="<%= page.author.optional.realPath %>" alt="" />
+            <a href="/<%= page.author.username %>/view"
+              ><%= page.author.username %></a
+            >
+          </span>
+          <span class="text-muted text-small"> <%= page.humanDate %></span>
         </div>
       </div>
       <% if(page.img.path) {%>
@@ -51,9 +57,12 @@
       <div class="d-flex card-footer justify-content-between">
         <span class="d-flex justify-content-center align-items-center"
           ><% if (currentUser && page.likes.includes(currentUser._id)) { %>
-          <i class="fa-solid fa-lg fa-heart" style="color: #e01b24"></i>
+          <i class="tag3d fa-solid fa-lg fa-heart" style="color: #e01b24"></i>
           <% }else { %>
-          <i class="fa-regular fa-lg fa-heart px-1" style="color: #e01b24"></i>
+          <i
+            class="tag3d fa-regular fa-lg fa-heart px-1"
+            style="color: #e01b24"
+          ></i>
           <% } %> <%= page.likes.length %></span
         >
         <div class="d-flex justify-content-center align-items-center">
@@ -64,9 +73,9 @@
             <i class="fa-regular fa-comment fa-lg"></i>
             <% } %> <%= page.comments.length %></span
           >
-          <span class="mx-2">
+          <span class="mx-1 ms-2">
             <a
-              class="btn btn-sm btn-info text-dark"
+              class="btn3d btn btn-sm btn-info text-dark"
               type="button"
               href="/p/<%= page._id %>"
               >Details</a

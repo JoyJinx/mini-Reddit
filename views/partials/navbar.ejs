@@ -8,7 +8,7 @@
         src="/public/favicon-32x32.png"
         alt="logo"
       />
-      <a class="navbar-brand pr-5" href="/p">miniR</a>
+      <a class="tag3d navbar-brand pr-5" href="/p">miniR</a>
     </div>
     <button
       class="navbar-toggler order-2 mx-2"
@@ -23,28 +23,31 @@
     </button>
     <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
       <div class="navbar-nav me-auto">
-        <a class="nav-link" href="/">Home</a>
-        <a class="nav-link" href="/p">Subpages</a>
-        <a class="nav-link" href="/about">About</a>
+        <a class="nav-link tag3d" href="/">Home</a>
+        <a class="nav-link tag3d" href="/p">Subpages</a>
+        <a class="nav-link tag3d" href="/about">About</a>
       </div>
-      <div class="navbar-nav">
+      <div class="navbar-nav d-flex align-items-center">
         <% if(!currentUser) {%>
-        <a class="nav-link" href="/login">Login</a>
-        <a class="nav-link" href="/register">Register</a>
+        <a class="nav-link tag3d" href="/login">Login</a>
+        <a class="nav-link tag3d" href="/register">Register</a>
         <% } else {%>
-        <a class="nav-link py-0 d-flex align-items-center" href="/profile">
+        <a
+          class="nav-link py-0 d-flex align-items-center tag3d"
+          href="/profile"
+        >
           <% if(currentUser.optional.realPath) {%>
           <img
-            class="mx-1"
+            class="mx-1 profile"
             src="<%= currentUser.optional.realPath %>"
             alt="profile"
           />
           <% } else {%>
-          <i class="fa-solid fa-user fa-xl mx-2" style="color: #f3a32b"></i>
+          <i class="fa-solid fa-user fa-xl mx-2" style="color: #fd9a18"></i>
           <% } %> <%= currentUser.username %></a
         >
 
-        <a class="nav-link mx-1" href="/logout">Logout</a>
+        <a class="nav-link mx-1 tag3d" href="/logout">Logout</a>
         <% } %>
       </div>
     </div>

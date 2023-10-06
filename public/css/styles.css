@@ -3,7 +3,27 @@
   padding: 0;
   box-sizing: border-box;
 }
-
+.card {
+  border-radius: 10px;
+  box-shadow: 0 10px 14px rgba(0, 0, 0, 0.08), 0 0 8px rgba(0, 0, 0, 0.05);
+  transition: 0.3s transform cubic-bezier(0.155, 1.105, 0.295, 1.12),
+    0.3s box-shadow,
+    0.3s -webkit-transform cubic-bezier(0.155, 1.105, 0.295, 1.12);
+}
+.tile:hover {
+  transform: scale(1.05);
+  box-shadow: 0 12px 20px rgba(0, 0, 0, 0.12), 0 4px 10px rgba(0, 0, 0, 0.06);
+}
+.btn3d {
+  box-shadow: 0 10px 14px rgba(0, 0, 0, 0.08), 0 0 8px rgba(0, 0, 0, 0.05);
+}
+.btn3d:hover {
+  transform: scale(1.07);
+  box-shadow: 0 12px 20px rgba(0, 0, 0, 0.12), 0 4px 10px rgba(0, 0, 0, 0.06);
+}
+.tag3d:hover {
+  transform: scale(1.05);
+}
 .card-body {
   background-color: ghostwhite;
 }
@@ -33,20 +53,28 @@ a {
   text-decoration: none;
   transition: all 0.3s;
 }
-
+.footlink:hover {
+  margin-left: 10px;
+  transform: scale(1.1);
+}
 .copyr {
   color: #aaaaaa;
+}
+
+.profile {
+  border: 2px solid #fd9a18;
+  border-radius: 100%;
 }
 
 a:hover,
 a:focus {
   text-decoration: none;
-  color: #1474f1;
+  color: #fd9a18;
 }
 
 .form-control {
-  background: rgb(208, 208, 216);
-  border-color: #666666;
+  background: rgb(231, 231, 245);
+  border-color: #747474;
 }
 
 .form-control:focus {
@@ -68,7 +96,13 @@ html {
 }
 
 body {
-  background: linear-gradient(rgba(25, 12, 58, 0.5), rgba(189, 90, 9, 0.5));
+  /* background: linear-gradient(rgba(25, 12, 58, 0.5), rgba(189, 90, 9, 0.5)); */
+  background: rgb(238, 174, 202);
+  background: radial-gradient(
+    circle,
+    rgb(247, 196, 218) 0%,
+    rgb(132, 177, 228) 100%
+  );
   background-size: cover;
   background-position: center;
 }

@@ -106,3 +106,9 @@ module.exports.getLogOut = (req, res, next) => {
     res.redirect("/p");
   });
 };
+
+module.exports.getOverview = async (req, res) => {
+  const { username } = req.params;
+  const watchUser = await User.findByUsername(username);
+  res.render("users/show", { watchUser });
+};

@@ -11,7 +11,7 @@
       enctype="multipart/form-data"
     >
       <div class="form-group">
-        <label for="exampleFormControlTextarea1">Your bio</label>
+        <label for="exampleFormControlTextarea1">Your status</label>
         <textarea
           class="form-control"
           id="exampleFormControlTextarea1"
@@ -22,7 +22,18 @@
 <%= currentUser.optional.bio %></textarea
         >
       </div>
-      <img src="<%= currentUser.optional.realPath %>" alt="profile" />
+      <br />
+      <label for="currentImg">Your current profile image</label>
+      <br />
+      <div class="d-flex justify-content-center">
+        <img
+          id="currentImg"
+          class="img-fluid rounded"
+          style="width: 40%; height: 30%"
+          src="<%= currentUser.optional.path %>"
+          alt="profile"
+        />
+      </div>
       <div class="form-group mt-3">
         <label for="exampleFormControlInput2">Your profile Image</label>
         <input
