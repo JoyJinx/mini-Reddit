@@ -32,7 +32,7 @@ module.exports.postCommentLike = async (req, res) => {
     req.flash("success", "removed like!!");
   } else {
     foundComment.likes.unshift(req.user._id);
-    thisUser.like.unshift(commentId);
+    thisUser.likes.unshift(commentId);
     req.flash("success", "liked!");
   }
   await thisUser.save();
