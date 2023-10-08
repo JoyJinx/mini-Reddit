@@ -33,21 +33,26 @@
       </a>
     </div>
     <% for(let page of pages) { %>
-    <div class="tile card mb-5">
+    <div class="tile card mb-5 position-relative">
       <div class="card-header">
         <div class="card-title mt-1"><%= page.title %></div>
         <hr class="my-1" />
         <div class="d-flex justify-content-between align-items-center">
-          <span class="text-small"
+          <span class="text-small z-2"
             >-By
-            <img src="<%= page.author.optional.realPath %>" alt="" />
-            <a href="/<%= page.author.username %>/view"
-              ><%= page.author.username %></a
+            <a href="/<%= page.author.username %>/view">
+              <img
+                class="author"
+                src="<%= page.author.optional.realPath %>"
+                alt=""
+              />
+              <%= page.author.username %></a
             >
           </span>
           <span class="text-muted text-small"> <%= page.humanDate %></span>
         </div>
       </div>
+
       <% if(page.img.path) {%>
       <div class="col-6 offset-3">
         <img class="img-fluid my-2" src="<%= page.img.path %>" />
@@ -55,19 +60,39 @@
       <% } %>
       <div class="card-body my-2"><%= page.body %></div>
       <div class="d-flex card-footer justify-content-between">
-        <span class="d-flex justify-content-center align-items-center"
+        <form id="likeForm" action="/p/<%= page._id  %>/like" method="POST">
+          <span
+            class="mr-auto d-flex justify-content-center align-items-center"
+          >
+            <% if (currentUser && page.likes.includes(currentUser._id)) { %>
+            <button class="tag3d btn px-1 z-2">
+              <i class="fa-solid fa-lg fa-heart" style="color: #e01b24"></i>
+            </button>
+            <% }else { %>
+            <button class="tag3d btn px-1 z-2">
+              <i class="fa-regular fa-lg fa-heart" style="color: #e01b24"></i>
+            </button>
+            <% } %> <%= page.likes.length %></span
+          >
+        </form>
+
+        <!-- <span class="d-flex justify-content-center align-items-center"
           ><% if (currentUser && page.likes.includes(currentUser._id)) { %>
-          <i class="tag3d fa-solid fa-lg fa-heart" style="color: #e01b24"></i>
+          <i
+            class="tag3d fa-solid fa-lg fa-heart px-1"
+            style="color: #e01b24"
+          ></i>
           <% }else { %>
           <i
             class="tag3d fa-regular fa-lg fa-heart px-1"
             style="color: #e01b24"
           ></i>
           <% } %> <%= page.likes.length %></span
-        >
+        > -->
         <div class="d-flex justify-content-center align-items-center">
           <span
-            ><% if (currentUser && page.comments.includes(currentUser._id)) { %>
+            ><% if (currentUser && page.comments.some(x=>
+            x.author===currentUser)) { %>
             <i class="fa-solid fa-comment fa-lg"></i>
             <% }else { %>
             <i class="fa-regular fa-comment fa-lg"></i>
@@ -75,7 +100,7 @@
           >
           <span class="mx-1 ms-2">
             <a
-              class="btn3d btn btn-sm btn-info text-dark"
+              class="btn3d btn btn-sm btn-info text-dark stretched-link"
               type="button"
               href="/p/<%= page._id %>"
               >Details</a

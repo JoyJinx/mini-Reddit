@@ -8,7 +8,12 @@
         <hr class="my-1" />
         <div class="d-flex justify-content-between align-items-center">
           <span class="text-small"
-            >-By <img src="<%= foundPage.author.optional.realPath %>" alt="" />
+            >-By
+            <img
+              class="author"
+              src="<%= foundPage.author.optional.realPath %>"
+              alt=""
+            />
             <a class="tag3d" href="/<%= foundPage.author.username %>/view"
               ><%= foundPage.author.username %></a
             ></span
@@ -105,7 +110,12 @@
           class="card-header d-flex justify-content-between align-items-center"
         >
           <span class="text-small"
-            >-By <img src="<%= comment.author.optional.realPath %>" alt="" />
+            >-By
+            <img
+              class="author"
+              src="<%= comment.author.optional.realPath %>"
+              alt=""
+            />
             <a class="tag3d" href="/<%= comment.author.username %>/view"
               ><%= comment.author.username %></a
             ></span

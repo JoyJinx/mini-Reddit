@@ -1,10 +1,10 @@
 <% layout('layouts/boilerplate') %>
 <div class="row d-flex justify-content-center">
-  <div class="col-lg-6 mt-5">
-    <h1>Sign In</h1>
+  <div class="col-lg-6 my-5">
+    <h1 class="ms-3">Sign In</h1>
     <div class="card">
       <form class="needs-validation" action="/login" method="POST" novalidate>
-        <div class="card-body">
+        <div class="card-body" style="border-radius: 10px">
           <div class="form-group">
             <label for="exampleFormControlInput1">Username</label>
             <input
@@ -28,9 +28,11 @@
             />
           </div>
         </div>
-        <div class="card-footer">
-          <a class="mt-1 btn btn-secondary" type="button" href="/p">Cancel</a>
-          <button class="mt-1 btn btn-success">Sign In</button>
+        <div class="card-footer" style="border-radius: 0 0 10px 10px">
+          <a class="btn3d mt-1 btn btn-secondary" type="button" href="/p"
+            >Cancel</a
+          >
+          <button class="btn3d mt-1 mx-1 btn btn-success">Sign In</button>
         </div>
       </form>
     </div>

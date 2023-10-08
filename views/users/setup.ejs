@@ -1,7 +1,7 @@
 <%- layout('layouts/boilerplate') %>
 <div class="container-fluid d-flex justify-content-center align-items-center">
   <div class="col-lg-6">
-    <h3>Complete your Profile</h3>
+    <h3 class="ms-3">Complete your Profile</h3>
     <form
       class="needs-validation"
       action="/profile"
@@ -10,7 +10,7 @@
       enctype="multipart/form-data"
     >
       <div class="form-group">
-        <label for="exampleFormControlTextarea1">Your bio</label>
+        <label for="exampleFormControlTextarea1">Your status</label>
         <textarea
           class="form-control"
           id="exampleFormControlTextarea1"
@@ -30,8 +30,10 @@
         />
       </div>
 
-      <a class="mt-1 btn btn-secondary" type="button" href="/profile">Cancel</a>
-      <button class="mx-1 mt-1 btn btn-success">Submit</button>
+      <a class="btn3d mt-1 btn btn-secondary" type="button" href="/profile"
+        >Cancel</a
+      >
+      <button class="btn3d mx-1 mt-1 btn btn-success">Submit</button>
     </form>
   </div>
 </div>

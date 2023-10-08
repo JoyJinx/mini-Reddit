@@ -2,7 +2,7 @@
 
 <div class="row d-flex justify-content-center">
   <div class="col-lg-6 d-flex flex-column order-1">
-    <h3><%= watchUser.username %> overview</h3>
+    <h3 class="ms-3 mb-2"><%= watchUser.username %> overview</h3>
     <div class="card mb-5">
       <div
         class="card-header d-flex justify-content-between align-items-center"
@@ -18,7 +18,8 @@
       <div class="card-body pb-1">
         <span>member since: <span><%= watchUser.createdAt %></span>></span>
         <hr />
-        <p>status: <%= watchUser.optional.bio %></p>
+        <span>status: </span>
+        <p><%= watchUser.optional.bio %></p>
       </div>
 
       <div class="card-footer">
@@ -31,11 +32,14 @@
         </p>
 
         <p class="mt-2">Liked: <span><%= watchUser.likes.length %></span></p>
+        <hr class="my-2" />
+        <div class="d-flex justify-content-between align-items-center">
+          <% if(currentUser && currentUser._id.equals(watchUser._id)) {%>
+          <a class="btn3d btn btn-info text-dark" href="/edit">Edit Profile</a>
+          <% } %>
+          <a class="btn3d btn btn-secondary text-white" href="/p">Back</a>
+        </div>
       </div>
-      <% if(currentUser && currentUser._id.equals(watchUser._id)) {%>
-      <a class="btn btn-info text-dark" href="/edit">Edit Profile</a>
-      <% } %>
-      <a class="btn btn-secondary text-white mt-1" href="/p">Back</a>
     </div>
   </div>
 </div>

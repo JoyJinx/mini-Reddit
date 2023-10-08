@@ -3,16 +3,20 @@
   padding: 0;
   box-sizing: border-box;
 }
+
 .card {
+  border: 1px 1px 0 1px solid var(--bs-card-border-color);
   border-radius: 10px;
   box-shadow: 0 10px 14px rgba(0, 0, 0, 0.08), 0 0 8px rgba(0, 0, 0, 0.05);
   transition: 0.3s transform cubic-bezier(0.155, 1.105, 0.295, 1.12),
     0.3s box-shadow,
     0.3s -webkit-transform cubic-bezier(0.155, 1.105, 0.295, 1.12);
+  background-color: ghostwhite;
 }
 .tile:hover {
   transform: scale(1.05);
-  box-shadow: 0 12px 20px rgba(0, 0, 0, 0.12), 0 4px 10px rgba(0, 0, 0, 0.06);
+  box-shadow: 0 14px 20px rgba(0, 0, 0, 0.12), 0 4px 10px rgba(0, 0, 0, 0.08);
+  cursor: pointer;
 }
 .btn3d {
   box-shadow: 0 10px 14px rgba(0, 0, 0, 0.08), 0 0 8px rgba(0, 0, 0, 0.05);
@@ -24,8 +28,19 @@
 .tag3d:hover {
   transform: scale(1.05);
 }
+.card-title {
+  text-align: start;
+  unicode-bidi: plaintext;
+}
+p {
+  text-align: start;
+  unicode-bidi: plaintext;
+}
 .card-body {
   background-color: ghostwhite;
+
+  text-align: start;
+  unicode-bidi: plaintext;
 }
 .card-header {
   background-color: #d3d3d8;
@@ -39,7 +54,7 @@ nav {
 }
 
 .text-small {
-  font-size: 0.9rem;
+  font-size: 0.8rem;
 }
 
 a {
@@ -60,9 +75,12 @@ a {
 .copyr {
   color: #aaaaaa;
 }
-
+.author {
+  border: 1px solid #ffffff;
+  border-radius: 100%;
+}
 .profile {
-  border: 2px solid #fd9a18;
+  border: 2px double #fd9a18;
   border-radius: 100%;
 }
 

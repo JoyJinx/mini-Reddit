@@ -1,7 +1,7 @@
 <% layout('layouts/boilerplate') %>
 <div class="row d-flex justify-content-center">
-  <div class="col-lg-6 mt-5">
-    <h1>Registration</h1>
+  <div class="col-lg-6 my-5">
+    <h1 class="ms-3">Registration</h1>
     <div class="card">
       <form
         class="needs-validation"
@@ -9,7 +9,7 @@
         method="POST"
         novalidate
       >
-        <div class="card-body">
+        <div class="card-body" style="border-radius: 10px">
           <div class="form-group">
             <label for="exampleFormControlInput1">Username</label>
             <input
@@ -43,21 +43,23 @@
               required
             />
           </div>
-          <div class="form-group mt-3">
-            <label for="exampleFormControlInput4">Password</label>
+          <div class="form-group my-3">
+            <label for="exampleFormControlInput4">Password again</label>
             <input
               type="password"
               class="form-control"
               id="exampleFormControlInput4"
               name="password2"
-              placeholder="Repeat Password"
+              placeholder="Repeat your Password"
               required
             />
           </div>
         </div>
-        <div class="card-footer">
-          <a class="mt-1 btn btn-secondary" type="button" href="/p">Cancel</a>
-          <button class="mt-1 btn btn-success">Sign Up</button>
+        <div class="card-footer" style="border-radius: 0 0 10px 10px">
+          <a class="btn3d mt-1 btn btn-secondary" type="button" href="/p"
+            >Cancel</a
+          >
+          <button class="btn3d mt-1 mx-1 btn btn-success">Sign Up</button>
         </div>
       </form>
     </div>

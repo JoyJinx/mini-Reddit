@@ -5,10 +5,10 @@
     class="col-lg-6 d-flex flex-column align-items-center justify-content-center order-2"
   >
     <div style="width: 80%" class="card">
-      <div class="card-header">
+      <div class="card-header" style="border-radius: 10px 10px 0 0">
         <h3>Subpages</h3>
       </div>
-      <div class="card-body">
+      <div class="card-body" style="border-radius: 10px">
         <ul>
           <% for(let page of thisUser.pages) {%>
           <li class="mb-2">
@@ -19,10 +19,10 @@
       </div>
     </div>
     <div style="width: 80%" class="card mt-2">
-      <div class="card-header">
+      <div class="card-header" style="border-radius: 10px 10px 0 0">
         <h3>Comments</h3>
       </div>
-      <div class="card-body">
+      <div class="card-body" style="border-radius: 10px">
         <ul>
           <% for(let comment of thisUser.comments) {%>
           <li class="mb-2">
@@ -33,10 +33,10 @@
       </div>
     </div>
     <div style="width: 80%" class="card my-4">
-      <div class="card-header">
+      <div class="card-header" style="border-radius: 10px 10px 0 0">
         <h3>Liked</h3>
       </div>
-      <div class="card-body">
+      <div class="card-body" style="border-radius: 10px">
         <ul>
           <% for(let like of thisUser.likes) {%>
           <li class="mb-2">
@@ -63,7 +63,8 @@
       <div class="card-body pb-1">
         <span>member since: <span><%= thisUser.createdAt %></span>></span>
         <hr />
-        <p>status: <%= thisUser.optional.bio %></p>
+        <span>status: </span>
+        <p><%= thisUser.optional.bio %></p>
       </div>
 
       <div class="card-footer">
@@ -76,8 +77,12 @@
         </p>
 
         <p class="mt-2">Liked: <span><%= thisUser.likes.length %></span></p>
+        <hr class="my-2" />
+        <div class="d-flex justify-content-between align-items-center">
+          <a class="btn3d btn btn-info text-dark" href="/edit">Edit Profile</a>
+          <a class="btn3d btn btn-secondary text-white" href="/p">Back</a>
+        </div>
       </div>
-      <a class="btn btn-info text-dark" href="/edit">Edit Profile</a>
     </div>
   </div>
 </div>
