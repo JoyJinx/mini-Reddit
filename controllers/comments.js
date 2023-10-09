@@ -5,7 +5,7 @@ const User = require("../models/users");
 module.exports.postComment = async (req, res) => {
   const { id } = req.params;
   const subpage = await Page.findById(id);
-  const comment = new Comment(req.body.comment.trim());
+  const comment = new Comment(req.body.comment);
   const thisUser = await User.findById(req.user._id);
   comment.author = req.user._id;
   comment.date = Date.now();

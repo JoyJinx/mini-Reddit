@@ -17,8 +17,12 @@
             Sort by
           </button>
           <ul class="dropdown-menu">
-            <li><a class="dropdown-item" href="/p/popular/new">New</a></li>
-            <li><a class="dropdown-item" href="/p/popular/best">Best</a></li>
+            <li>
+              <a class="dropdown-item" href="/p/popular/new">New</a>
+            </li>
+            <li>
+              <a class="dropdown-item" href="/p/popular/best">Best</a>
+            </li>
           </ul>
         </div>
       </div>
@@ -35,7 +39,7 @@
     <% for(let page of pages) { %>
     <div class="tile card mb-5 position-relative">
       <div class="card-header">
-        <div class="card-title mt-1"><%= page.title %></div>
+        <div class="card-title mt-1 ms-2"><%= page.title %></div>
         <hr class="my-1" />
         <div class="d-flex justify-content-between align-items-center">
           <span class="text-small z-2"
@@ -109,7 +113,45 @@
         </div>
       </div>
     </div>
-
     <% } %>
+
+    <nav class="pagify" aria-label="Page navigation example">
+      <ul
+        class="pagination d-flex justify-content-center align-items-center pt-5 my-5"
+      >
+        <li class="page-item">
+          <% if(currentPage<=1){%>
+          <a class="page-link disabled" href="?page=<%= currentPage-1 %>"
+            >Previous</a
+          >
+          <%}else {%>
+          <a class="page-link" href="?page=<%= currentPage-1 %>">Previous</a>
+          <%}%>
+        </li>
+        <li class="page-item">
+          <a class="page-link active" href="?page=<%= currentPage %>"
+            ><%= currentPage %></a
+          >
+        </li>
+        <% for(let i=currentPage+1; i<totalPages; i++) {%>
+        <li class="page-item">
+          <a class="page-link" href="?page=<%= i %>"><%= i %></a>
+        </li>
+        <%}%>
+        <li class="page-item">
+          <%if(parseInt(currentPage)===totalPages){%>
+          <a
+            class="page-link disabled"
+            href="?page=<%= parseInt(currentPage) + 1 %>"
+            >Next</a
+          >
+          <%}else{%>
+          <a class="page-link" href="?page=<%= parseInt(currentPage) + 1 %>"
+            >Next</a
+          >
+          <%}%>
+        </li>
+      </ul>
+    </nav>
   </div>
 </div>

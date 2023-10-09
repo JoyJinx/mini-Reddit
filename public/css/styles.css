@@ -36,6 +36,19 @@ p {
   text-align: start;
   unicode-bidi: plaintext;
 }
+nav:not(.pagify) {
+  background-color: #0e1b29;
+}
+.pagination > li {
+  border-radius: 10px;
+  box-shadow: 0 10px 14px rgba(0, 0, 0, 0.08), 0 0 8px rgba(0, 0, 0, 0.05);
+  transition: 0.3s transform cubic-bezier(0.155, 1.105, 0.295, 1.12),
+    0.3s box-shadow,
+    0.3s -webkit-transform cubic-bezier(0.155, 1.105, 0.295, 1.12);
+}
+.pagify {
+  background-color: transparent;
+}
 .card-body {
   background-color: ghostwhite;
 
@@ -47,10 +60,6 @@ p {
 }
 .card-footer {
   background-color: #d3d3d8;
-}
-
-nav {
-  background-color: #0e1b29;
 }
 
 .text-small {
