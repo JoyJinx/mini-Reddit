@@ -111,6 +111,7 @@ module.exports.getPageId = async (req, res) => {
 
 module.exports.postPage = async (req, res) => {
   const newPage = new Page(req.body.page);
+
   if (req.file) {
     const result = await cloudinary.uploader.upload(req.file.path, {
       allowed_formats: ["jpeg", "jpg", "png"],

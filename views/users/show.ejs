@@ -19,7 +19,7 @@
         <span>member since: <span><%= watchUser.createdAt %></span>></span>
         <hr />
         <span>status: </span>
-        <p><%= watchUser.optional.bio %></p>
+        <p><%- watchUser.optional.bio.replaceAll('\n', '<br />') %></p>
       </div>
 
       <div class="card-footer">

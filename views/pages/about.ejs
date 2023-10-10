@@ -16,12 +16,13 @@
 
   <body class="d-flex text-center text-white bg-dark justify-content-center">
     <div class="d-flex w-100 h-100 p-3 mx-auto flex-column align-items-center">
-      <header class="mb-auto">
+      <header class="mb-5">
         <div>
           <h3 class="float-md-left mb-0">mR</h3>
           <nav class="nav nav-masthead justify-content-center float-md-right">
-            <a class="nav-link active" aria-current="page" href="#">About</a>
             <a class="nav-link" href="/">Home</a>
+            <a class="nav-link" href="/p">Subpages</a>
+            <a class="nav-link active" aria-current="page" href="#">About</a>
             <% if(!currentUser) { %>
             <a class="nav-link" href="/login">Login</a>
             <a class="nav-link" href="/register">Register</a>
