@@ -12,7 +12,14 @@ body {
 .card-header {
   background-color: #7c7c7c;
 }
-
+.btn3d {
+  box-shadow: 0 10px 14px rgba(0, 0, 0, 0.08), 0 0 8px rgba(0, 0, 0, 0.05);
+  transition: 0.3s;
+}
+.btn3d:hover {
+  transform: scale(1.07);
+  box-shadow: 0 12px 20px rgba(0, 0, 0, 0.12), 0 4px 10px rgba(0, 0, 0, 0.06);
+}
 .nav-link {
   padding: 0.25rem 0;
   font-weight: 700;

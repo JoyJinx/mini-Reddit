@@ -4,15 +4,19 @@
   <div
     class="col-lg-6 d-flex flex-column align-items-center justify-content-center order-2"
   >
-    <div style="width: 80%" class="card">
+    <div style="width: 80%" class="card mb-2">
       <div class="card-header" style="border-radius: 10px 10px 0 0">
-        <h3>Subpages</h3>
+        <h3 class="my-1">Subpages</h3>
       </div>
       <div class="card-body" style="border-radius: 10px">
         <ul>
           <% for(let page of thisUser.pages) {%>
           <li class="mb-2">
-            <a href="/p/<%= page._id  %>"><%= page.title %></a>
+            <a
+              style="text-align: start; unicode-bidi: plaintext"
+              href="/p/<%= page._id  %>"
+              ><%= page.title %></a
+            >
           </li>
           <% } %>
         </ul>
@@ -20,13 +24,17 @@
     </div>
     <div style="width: 80%" class="card mt-2">
       <div class="card-header" style="border-radius: 10px 10px 0 0">
-        <h3>Comments</h3>
+        <h3 class="my-1">Comments</h3>
       </div>
       <div class="card-body" style="border-radius: 10px">
         <ul>
           <% for(let comment of thisUser.comments) {%>
           <li class="mb-2">
-            <a href="/p/<%= comment.page  %>"><%= comment.body %></a>
+            <a
+              style="text-align: start; unicode-bidi: plaintext"
+              href="/p/<%= comment.page  %>"
+              ><%= comment.body %></a
+            >
           </li>
           <% } %>
         </ul>
@@ -34,13 +42,17 @@
     </div>
     <div style="width: 80%" class="card my-4">
       <div class="card-header" style="border-radius: 10px 10px 0 0">
-        <h3>Liked</h3>
+        <h3 class="my-1">Liked</h3>
       </div>
       <div class="card-body" style="border-radius: 10px">
         <ul>
           <% for(let like of thisUser.likes) {%>
           <li class="mb-2">
-            <a href="/p/<%= like._id  %>"><%= like.title || like.body %></a>
+            <a
+              style="text-align: start; unicode-bidi: plaintext"
+              href="/p/<%= like._id  %>"
+              ><%= like.title || like.body %></a
+            >
           </li>
           <% } %>
         </ul>
@@ -52,7 +64,7 @@
       <div
         class="card-header d-flex justify-content-between align-items-center"
       >
-        <h5><%= thisUser.username %></h5>
+        <h5 class="my-1"><%= thisUser.username %></h5>
         <img
           class="profile"
           src="<%= thisUser.optional.realPath %>"
@@ -61,7 +73,10 @@
       </div>
 
       <div class="card-body pb-1">
-        <span>member since: <span><%= thisUser.createdAt %></span>></span>
+        <span
+          >member since:
+          <span class="text-muted"><%= thisUser.createdAt %></span>></span
+        >
         <hr />
         <span>status: </span>
         <p><%- thisUser.optional.bio.replaceAll('\n', '<br />') %></p>
